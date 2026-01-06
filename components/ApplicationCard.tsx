@@ -9,7 +9,7 @@ interface ApplicationCardProps {
             title: string;
             company: string;
             location: string;
-        };
+        } | null;
         status: string;
         createdAt: string;
         feedback?: string;
@@ -28,7 +28,7 @@ export default function ApplicationCard({ application, showJobDetails = true }: 
         <div className="bg-white border border-slate-200 p-6 rounded-xl hover:shadow-md transition-all duration-300 animate-fade-in shadow-sm">
             <div className="flex items-start justify-between mb-4">
                 <div className="flex-1">
-                    {showJobDetails && (
+                    {showJobDetails && application.jobId ? (
                         <>
                             <Link href={`/jobs/${application.jobId._id}`}>
                                 <h3 className="text-lg font-bold text-foreground mb-1 hover:text-primary transition-colors">
@@ -41,6 +41,10 @@ export default function ApplicationCard({ application, showJobDetails = true }: 
                                 <span>{application.jobId.location}</span>
                             </p>
                         </>
+                    ) : showJobDetails && (
+                        <div className="text-gray-500 italic">
+                            Job no longer available
+                        </div>
                     )}
                 </div>
                 <StatusBadge status={application.status} />
