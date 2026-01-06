@@ -82,7 +82,7 @@ export default function RegisterPage() {
                     {/* Name Fields */}
                     <div className="grid grid-cols-2 gap-3">
                         <div>
-                            <label className="block text-sm font-medium text-gray-300 mb-1">
+                            <label className="block text-sm font-medium text-gray-700 mb-1">
                                 First Name
                             </label>
                             <input
@@ -94,7 +94,7 @@ export default function RegisterPage() {
                             />
                         </div>
                         <div>
-                            <label className="block text-sm font-medium text-gray-300 mb-1">
+                            <label className="block text-sm font-medium text-gray-700 mb-1">
                                 Last Name
                             </label>
                             <input
@@ -117,7 +117,7 @@ export default function RegisterPage() {
                             required
                             value={formData.email}
                             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                            className="w-full px-4 py-2 bg-white/10 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-primary"
+                            className="w-full px-4 py-2 bg-gray-50 border border-gray-100 rounded-lg text-foreground placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-100"
                         />
                     </div>
 
@@ -132,7 +132,7 @@ export default function RegisterPage() {
                             minLength={8}
                             value={formData.password}
                             onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                            className="w-full px-4 py-2 bg-white/10 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-primary"
+                            className="w-full px-4 py-2 bg-gray-50 border border-gray-100 rounded-lg text-foreground placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-100"
                         />
                         <p className="text-xs text-gray-400 mt-1">Minimum 8 characters</p>
                     </div>
@@ -146,14 +146,14 @@ export default function RegisterPage() {
                             type="tel"
                             value={formData.phone}
                             onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                            className="w-full px-4 py-2 bg-white/10 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-primary"
+                            className="w-full px-4 py-2 bg-gray-50 border border-gray-100 rounded-lg text-foreground placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-100"
                         />
                     </div>
 
                     {/* Role-specific fields */}
                     {role === UserRole.RECRUITER && (
                         <div>
-                            <label className="block text-sm font-medium text-gray-300 mb-1">
+                            <label className="block text-sm font-medium text-gray-700 mb-1">
                                 Company Name
                             </label>
                             <input
@@ -167,7 +167,7 @@ export default function RegisterPage() {
 
                     {role === UserRole.EMPLOYEE && (
                         <div>
-                            <label className="block text-sm font-medium text-gray-300 mb-1">
+                            <label className="block text-sm font-medium text-gray-700 mb-1">
                                 Current Position (Optional)
                             </label>
                             <input
