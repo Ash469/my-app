@@ -35,7 +35,7 @@ export default function ChatPage() {
     const params = useParams();
     const searchParams = useSearchParams();
     const router = useRouter();
-    const { user, token } = useAuth();
+    const { user, token, isLoading: authLoading } = useAuth();
     const [chat, setChat] = useState<Chat | null>(null);
     const [messages, setMessages] = useState<Message[]>([]);
     const [newMessage, setNewMessage] = useState('');
@@ -49,14 +49,19 @@ export default function ChatPage() {
     const isRecruiter = user?.role === UserRole.RECRUITER;
 
     useEffect(() => {
+        if (authLoading) return;
+
         // For recruiters: wait until both user AND token are loaded
         // For referees: just need the token from URL
         const canFetch = isRecruiter ? (user && token) : (isReferee && refereeToken);
 
-        if (!canFetch) return;
-
-        fetchChat();
-    }, [chatId, user, token, refereeToken]);
+        if (canFetch) {
+            fetchChat();
+        } else if (!isReferee && !isRecruiter && !authLoading) {
+            // Not a referee and not a logged in recruiter, finished loading
+            setLoading(false);
+        }
+    }, [chatId, user, token, refereeToken, authLoading, isRecruiter, isReferee]);
 
     // Fetch messages only after chat is loaded
     useEffect(() => {
@@ -173,13 +178,13 @@ export default function ChatPage() {
         }
     };
 
-    if (loading) {
+    if (loading || authLoading) {
         return (
             <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-violet-900 flex items-center justify-center">
-                <div className="glass p-8 rounded-2xl text-center">
+                <div className="glass p-8 rounded-2xl">
                     <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-white mx-auto mb-4"></div>
-                    <p className="text-xl font-semibold text-white">Getting ready with your chats...</p>
-                    <p className="text-sm text-gray-400 mt-2">Please wait</p>
+                    <p className="text-xl font-semibold text-white text-center">Getting ready with your chats...</p>
+                    <p className="text-sm text-gray-400 mt-2 text-center">Please wait</p>
                 </div>
             </div>
         );

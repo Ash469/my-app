@@ -6,9 +6,6 @@ const SALT_LENGTH = 64;
 const TAG_LENGTH = 16;
 const KEY_LENGTH = 32;
 
-/**
- * Derives a key from the encryption key and salt
- */
 function getKey(salt: Buffer): Buffer {
     const encryptionKey = process.env.ENCRYPTION_KEY!;
 
@@ -20,7 +17,6 @@ function getKey(salt: Buffer): Buffer {
 }
 
 /**
- * Encrypts a message using AES-256-GCM
  * Returns base64 encoded string containing: salt + iv + tag + encrypted data
  */
 export function encrypt(text: string): string {

@@ -8,8 +8,8 @@ export interface IApplication extends Document {
     status: ApplicationStatus;
     resumeUrl: string;
     coverLetter?: string;
-    feedback?: string; // Limited feedback visible to employee
-    internalNotes?: string; // Recruiter-only notes
+    feedback?: string;
+    internalNotes?: string;
     statusHistory: {
         status: ApplicationStatus;
         changedAt: Date;

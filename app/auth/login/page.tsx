@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useAuth } from '@/contexts/AuthContext';
@@ -17,10 +17,11 @@ export default function LoginPage() {
     const [isLoading, setIsLoading] = useState(false);
 
     // Redirect if already logged in
-    if (user) {
-        router.push(user.role === UserRole.EMPLOYEE ? '/dashboard/employee' : '/dashboard/recruiter');
-        return null;
-    }
+    useEffect(() => {
+        if (user) {
+            router.push(user.role === UserRole.EMPLOYEE ? '/dashboard/employee' : '/dashboard/recruiter');
+        }
+    }, [user, router]);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();

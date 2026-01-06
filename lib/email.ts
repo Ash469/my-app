@@ -3,12 +3,11 @@ import nodemailer from 'nodemailer';
 // Email configuration
 const EMAIL_HOST = process.env.EMAIL_HOST || 'smtp.gmail.com';
 const EMAIL_PORT = parseInt(process.env.EMAIL_PORT || '587');
-const EMAIL_SECURE = process.env.EMAIL_SECURE === 'true'; // true for 465, false for other ports
+const EMAIL_SECURE = process.env.EMAIL_SECURE === 'true';
 const EMAIL_USER = process.env.EMAIL_USER!;
 const EMAIL_PASSWORD = process.env.EMAIL_PASSWORD!;
 const FROM_EMAIL = process.env.FROM_EMAIL || EMAIL_USER;
 
-// Create reusable transporter
 let transporter: nodemailer.Transporter | null = null;
 
 function getTransporter() {

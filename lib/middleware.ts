@@ -6,12 +6,7 @@ export interface AuthenticatedRequest extends NextRequest {
     user?: JWTPayload;
 }
 
-// Cache for storing authenticated user data per request
 const authCache = new Map<NextRequest, JWTPayload>();
-
-/**
- * Middleware to verify JWT token and store user data
- */
 export async function authMiddleware(request: NextRequest): Promise<NextResponse | null> {
     const authHeader = request.headers.get('authorization');
     const token = extractTokenFromHeader(authHeader);
@@ -22,17 +17,14 @@ export async function authMiddleware(request: NextRequest): Promise<NextResponse
 
     try {
         const payload = verifyToken(token);
-        // Store user data in cache
         authCache.set(request, payload);
-        return null; // Continue to handler
+        return null;
     } catch (error) {
         return NextResponse.json({ error: 'Invalid or expired token' }, { status: 401 });
     }
 }
 
-/**
- * Middleware to check if user has required role
- */
+
 export function requireRole(...roles: UserRole[]) {
     return async (request: NextRequest): Promise<NextResponse | null> => {
         const user = authCache.get(request);
@@ -47,13 +39,11 @@ export function requireRole(...roles: UserRole[]) {
             );
         }
 
-        return null; // Continue to handler
+        return null;
     };
 }
 
-/**
- * Helper to get user from request
- */
 export function getUserFromRequest(request: NextRequest): JWTPayload | null {
     return authCache.get(request) || null;
 }
+

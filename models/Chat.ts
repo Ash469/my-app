@@ -10,13 +10,13 @@ interface IMessage {
 }
 
 export interface IChat {
-    _id: string; // UUID v4
+    _id: string;
     applicationId: mongoose.Types.ObjectId;
     recruiterId: mongoose.Types.ObjectId;
     refereeId: mongoose.Types.ObjectId;
-    tokenHash: string; // Hashed access token for referee
-    refereeToken: string; // Original token for referee (for notifications)
-    messages: IMessage[]; // Store messages inline
+    tokenHash: string;
+    refereeToken: string;
+    messages: IMessage[];
     isActive: boolean;
     createdAt: Date;
     updatedAt: Date;
@@ -82,7 +82,7 @@ const ChatSchema = new Schema<IChat>(
     },
     {
         timestamps: true,
-        _id: false, // Disable auto-generation of _id since we're using UUID
+        _id: false,
     }
 );
 

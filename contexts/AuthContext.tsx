@@ -41,7 +41,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        // Load token from localStorage on mount
         const storedToken = localStorage.getItem('token');
         const storedUser = localStorage.getItem('user');
 

@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import dbConnect from '@/lib/db';
 import Application from '@/models/Application';
 import Job from '@/models/Job';
+import User from '@/models/User';
+
 import { authMiddleware, getUserFromRequest, requireRole } from '@/lib/middleware';
 import { UserRole, ApplicationStatus } from '@/lib/constants';
 import { z } from 'zod';

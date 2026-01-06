@@ -3,7 +3,7 @@ import twilio from 'twilio';
 // Twilio configuration
 const TWILIO_ACCOUNT_SID = process.env.TWILIO_ACCOUNT_SID!;
 const TWILIO_AUTH_TOKEN = process.env.TWILIO_AUTH_TOKEN!;
-const TWILIO_WHATSAPP_NUMBER = process.env.TWILIO_WHATSAPP_NUMBER!; // Format: whatsapp:+14155238886
+const TWILIO_WHATSAPP_NUMBER = process.env.TWILIO_WHATSAPP_NUMBER!;
 
 // Create Twilio client
 let twilioClient: twilio.Twilio | null = null;
@@ -31,7 +31,6 @@ export async function sendRefereeInvitationWhatsApp(
         return;
     }
 
-    // Ensure phone number is in WhatsApp format
     const formattedPhone = refereePhone.startsWith('whatsapp:')
         ? refereePhone
         : `whatsapp:${refereePhone}`;
@@ -98,7 +97,6 @@ _This is an automated notification from the Recruitment Verification Platform._`
         console.log(`WhatsApp new message notification sent to ${recipientPhone}`);
     } catch (error) {
         console.error('Error sending WhatsApp new message notification:', error);
-        // Don't throw error for notifications to avoid blocking message sending
     }
 }
 
@@ -123,12 +121,12 @@ export async function sendApplicationStatusUpdateWhatsApp(
         : `whatsapp:${employeePhone}`;
 
     const statusMessages: Record<string, string> = {
-        SUBMITTED: '✅ Your application has been submitted successfully.',
-        UNDER_REVIEW: '🔍 Your application is now under review.',
-        REFEREE_CONTACTED: '📞 We have contacted your references.',
-        VERIFIED: '✔️ Your references have been verified.',
-        REJECTED: '❌ Unfortunately, we will not be moving forward with your application.',
-        HIRED: '🎉 Congratulations! You have been selected for the position.',
+        SUBMITTED: 'Your application has been submitted successfully.',
+        UNDER_REVIEW: 'Your application is now under review.',
+        REFEREE_CONTACTED: 'We have contacted your references.',
+        VERIFIED: 'Your references have been verified.',
+        REJECTED: 'Unfortunately, we will not be moving forward with your application.',
+        HIRED: 'Congratulations! You have been selected for the position.',
     };
 
     const statusEmoji: Record<string, string> = {

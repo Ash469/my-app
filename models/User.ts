@@ -9,8 +9,8 @@ export interface IUser extends Document {
     firstName: string;
     lastName: string;
     phone?: string;
-    company?: string; // For recruiters
-    position?: string; // For employees
+    company?: string;
+    position?: string;
     bio?: string;
     skills?: string[];
     yearsOfExperience?: number;

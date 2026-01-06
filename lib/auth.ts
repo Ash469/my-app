@@ -32,18 +32,12 @@ export async function comparePassword(
     return bcrypt.compare(password, hashedPassword);
 }
 
-/**
- * Generates a JWT token for a user
- */
 export function generateToken(payload: JWTPayload): string {
     return jwt.sign(payload, JWT_SECRET, {
-        expiresIn: '7d', // Token expires in 7 days
+        expiresIn: '7d',
     });
 }
 
-/**
- * Verifies and decodes a JWT token
- */
 export function verifyToken(token: string): JWTPayload {
     try {
         return jwt.verify(token, JWT_SECRET) as JWTPayload;
@@ -52,9 +46,6 @@ export function verifyToken(token: string): JWTPayload {
     }
 }
 
-/**
- * Extracts token from Authorization header
- */
 export function extractTokenFromHeader(authHeader: string | null): string | null {
     if (!authHeader || !authHeader.startsWith('Bearer ')) {
         return null;
