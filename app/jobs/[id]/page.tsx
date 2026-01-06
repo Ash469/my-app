@@ -185,7 +185,11 @@ export default function JobDetailsPage() {
                 <div className="bg-slate-50 border border-slate-200 p-8 rounded-xl animate-fade-in shadow-sm">
                     <h2 className="text-2xl font-bold text-slate-900 mb-4">About the Company</h2>
                     <p className="text-slate-600 leading-relaxed font-medium">
-                        This position is posted by <span className="text-slate-900 font-bold">{job.recruiterId.firstName} {job.recruiterId.lastName}</span> from <span className="text-slate-900 font-bold">{job.recruiterId.company}</span>.
+                        This position is posted by <span className="text-slate-900 font-bold">
+                            {job.recruiterId?.firstName ? `${job.recruiterId.firstName} ${job.recruiterId.lastName}` : 'Recruiter'}
+                        </span> from <span className="text-slate-900 font-bold">
+                            {job.recruiterId?.company || job.company}
+                        </span>.
                     </p>
                 </div>
             </main>
