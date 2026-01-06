@@ -25,7 +25,7 @@ const applySchema = z.object({
 // POST /api/jobs/[id]/apply - Submit job application with referees (Employee only)
 export async function POST(
     request: NextRequest,
-    { params }: { params: { id: string } }
+    { params }: { params: Promise<{ id: string }> }
 ) {
     // Verify authentication
     const authError = await authMiddleware(request);
