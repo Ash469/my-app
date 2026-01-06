@@ -142,12 +142,12 @@ export default function ApplyJobPage() {
 
     if (loading) {
         return (
-            <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-violet-900">
+            <div className="min-h-screen bg-background text-foreground">
                 <Navbar />
                 <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-                    <div className="glass p-8 rounded-2xl animate-pulse">
-                        <div className="h-8 bg-white/10 rounded mb-4"></div>
-                        <div className="h-4 bg-white/10 rounded mb-2"></div>
+                    <div className="bg-white border border-slate-200 p-8 rounded-xl animate-pulse shadow-sm">
+                        <div className="h-8 bg-slate-100 rounded mb-4 w-1/2"></div>
+                        <div className="h-4 bg-slate-100 rounded mb-2 w-1/3"></div>
                     </div>
                 </div>
             </div>
@@ -156,18 +156,18 @@ export default function ApplyJobPage() {
 
     if (!job) {
         return (
-            <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-violet-900">
+            <div className="min-h-screen bg-background text-foreground">
                 <Navbar />
                 <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-                    <div className="glass p-12 rounded-2xl text-center">
+                    <div className="bg-white border border-slate-200 p-12 rounded-xl text-center shadow-sm">
                         <div className="text-6xl mb-4">❌</div>
-                        <h2 className="text-2xl font-bold text-white mb-2">Job not found</h2>
-                        <p className="text-gray-400 mb-6">This job posting may have been removed</p>
+                        <h2 className="text-2xl font-bold text-slate-900 mb-2">Job not found</h2>
+                        <p className="text-slate-500 mb-6">This job posting may have been removed</p>
                         <button
                             onClick={() => router.push('/jobs')}
-                            className="gradient-primary text-white px-6 py-3 rounded-lg font-semibold hover:opacity-90 transition-opacity"
+                            className="bg-blue-600 text-white px-8 py-3 rounded-lg font-bold hover:bg-blue-700 transition-colors shadow-sm"
                         >
-                            Browse Jobs
+                            Browse All Jobs
                         </button>
                     </div>
                 </div>
@@ -176,38 +176,38 @@ export default function ApplyJobPage() {
     }
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-violet-900">
+        <div className="min-h-screen bg-background text-foreground">
             <Navbar />
 
             <main className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
                 {/* Header */}
-                <div className="mb-8 animate-fade-in">
-                    <h1 className="text-3xl font-bold text-white mb-2">Apply for Position</h1>
-                    <p className="text-gray-400">
-                        {job.title} at {job.company}
+                <div className="mb-8 animate-fade-in text-center md:text-left">
+                    <h1 className="text-3xl font-bold text-slate-900 mb-2">Apply for Position</h1>
+                    <p className="text-slate-500 font-medium">
+                        {job.title} at <span className="text-blue-600 font-bold">{job.company}</span>
                     </p>
                 </div>
 
                 {/* Progress Steps */}
-                <div className="glass p-4 rounded-2xl mb-6 animate-fade-in">
+                <div className="bg-white border border-slate-200 p-6 rounded-xl mb-6 animate-fade-in shadow-sm">
                     <div className="flex items-center justify-between">
                         {[1, 2, 3].map((s) => (
                             <div key={s} className="flex items-center flex-1">
-                                <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold ${step >= s ? 'gradient-primary text-white' : 'bg-white/10 text-gray-400'
+                                <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold shadow-sm border ${step >= s ? 'bg-blue-600 text-white border-blue-600' : 'bg-slate-50 text-slate-400 border-slate-200'
                                     }`}>
                                     {s}
                                 </div>
                                 {s < 3 && (
-                                    <div className={`flex-1 h-1 mx-2 ${step > s ? 'bg-gradient-to-r from-purple-500 to-violet-500' : 'bg-white/10'
+                                    <div className={`flex-1 h-1 mx-2 rounded ${step > s ? 'bg-blue-600' : 'bg-slate-100'
                                         }`}></div>
                                 )}
                             </div>
                         ))}
                     </div>
-                    <div className="flex justify-between mt-2 text-sm">
-                        <span className={step >= 1 ? 'text-white' : 'text-gray-400'}>Resume</span>
-                        <span className={step >= 2 ? 'text-white' : 'text-gray-400'}>Referees</span>
-                        <span className={step >= 3 ? 'text-white' : 'text-gray-400'}>Review</span>
+                    <div className="flex justify-between mt-3 text-sm font-bold">
+                        <span className={step >= 1 ? 'text-slate-900' : 'text-slate-400'}>Resume</span>
+                        <span className={step >= 2 ? 'text-slate-900' : 'text-slate-400'}>Referees</span>
+                        <span className={step >= 3 ? 'text-slate-900' : 'text-slate-400'}>Review</span>
                     </div>
                 </div>
 
@@ -215,8 +215,8 @@ export default function ApplyJobPage() {
                     {/* Step 1: Resume & Cover Letter */}
                     {step === 1 && (
                         <div className="space-y-6 animate-fade-in">
-                            <div className="glass p-6 rounded-2xl">
-                                <label className="block text-sm font-medium text-gray-300 mb-2">
+                            <div className="bg-white border border-gray-100 p-6 rounded-2xl shadow-sm">
+                                <label className="block text-sm font-medium text-gray-700 mb-2">
                                     Resume URL *
                                 </label>
                                 <input
@@ -224,23 +224,23 @@ export default function ApplyJobPage() {
                                     required
                                     value={formData.resumeUrl}
                                     onChange={(e) => setFormData({ ...formData, resumeUrl: e.target.value })}
-                                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                                    className="w-full px-4 py-3 bg-gray-50 border border-gray-100 rounded-lg text-foreground placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-100"
                                     placeholder="https://drive.google.com/your-resume"
                                 />
-                                <p className="text-xs text-gray-400 mt-2">
+                                <p className="text-xs text-gray-500 mt-2">
                                     💡 Upload your resume to Google Drive, Dropbox, or your website
                                 </p>
                             </div>
 
-                            <div className="glass p-6 rounded-2xl">
-                                <label className="block text-sm font-medium text-gray-300 mb-2">
+                            <div className="bg-white border border-gray-100 p-6 rounded-2xl shadow-sm">
+                                <label className="block text-sm font-medium text-gray-700 mb-2">
                                     Cover Letter (Optional)
                                 </label>
                                 <textarea
                                     value={formData.coverLetter}
                                     onChange={(e) => setFormData({ ...formData, coverLetter: e.target.value })}
                                     rows={8}
-                                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                                    className="w-full px-4 py-3 bg-gray-50 border border-gray-100 rounded-lg text-foreground placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-100"
                                     placeholder="Tell us why you're a great fit..."
                                 />
                             </div>
@@ -248,7 +248,7 @@ export default function ApplyJobPage() {
                             <button
                                 type="button"
                                 onClick={nextStep}
-                                className="w-full gradient-primary text-white px-8 py-4 rounded-lg text-lg font-semibold hover:opacity-90 transition-opacity"
+                                className="w-full bg-blue-600 text-white px-8 py-4 rounded-lg text-lg font-bold hover:bg-blue-700 transition-colors shadow-lg shadow-blue-100"
                             >
                                 Next: Add Referees →
                             </button>
@@ -258,16 +258,16 @@ export default function ApplyJobPage() {
                     {/* Step 2: Referees */}
                     {step === 2 && (
                         <div className="space-y-6 animate-fade-in">
-                            <div className="glass p-6 rounded-2xl">
-                                <h2 className="text-xl font-bold text-white mb-4">Professional Referees</h2>
-                                <p className="text-gray-400 text-sm mb-6">
+                            <div className="bg-white border border-gray-100 p-6 rounded-2xl shadow-sm">
+                                <h2 className="text-xl font-bold text-foreground mb-4">Professional Referees</h2>
+                                <p className="text-gray-500 text-sm mb-6">
                                     Add 1-3 professional references who can vouch for your work experience
                                 </p>
 
                                 {referees.map((referee, index) => (
-                                    <div key={index} className="mb-6 p-4 bg-white/5 rounded-lg border border-white/10">
+                                    <div key={index} className="mb-6 p-4 bg-gray-50 rounded-lg border border-gray-100">
                                         <div className="flex items-center justify-between mb-4">
-                                            <h3 className="font-semibold text-white">Referee {index + 1}</h3>
+                                            <h3 className="font-semibold text-foreground">Referee {index + 1}</h3>
                                             {referees.length > 1 && (
                                                 <button
                                                     type="button"
@@ -281,46 +281,46 @@ export default function ApplyJobPage() {
 
                                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                             <div>
-                                                <label className="block text-xs text-gray-400 mb-1">Name *</label>
+                                                <label className="block text-xs text-gray-500 mb-1">Name *</label>
                                                 <input
                                                     type="text"
                                                     required
                                                     value={referee.name}
                                                     onChange={(e) => updateReferee(index, 'name', e.target.value)}
-                                                    className="w-full px-3 py-2 bg-white/10 border border-white/20 rounded-lg text-white text-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
+                                                    className="w-full px-3 py-2 bg-white border border-gray-200 rounded-lg text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-gray-100"
                                                     placeholder="John Doe"
                                                 />
                                             </div>
 
                                             <div>
-                                                <label className="block text-xs text-gray-400 mb-1">Email *</label>
+                                                <label className="block text-xs text-gray-500 mb-1">Email *</label>
                                                 <input
                                                     type="email"
                                                     required
                                                     value={referee.email}
                                                     onChange={(e) => updateReferee(index, 'email', e.target.value)}
-                                                    className="w-full px-3 py-2 bg-white/10 border border-white/20 rounded-lg text-white text-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
+                                                    className="w-full px-3 py-2 bg-white border border-gray-200 rounded-lg text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-gray-100"
                                                     placeholder="john@company.com"
                                                 />
                                             </div>
 
                                             <div>
-                                                <label className="block text-xs text-gray-400 mb-1">Phone</label>
+                                                <label className="block text-xs text-gray-500 mb-1">Phone</label>
                                                 <input
                                                     type="tel"
                                                     value={referee.phone}
                                                     onChange={(e) => updateReferee(index, 'phone', e.target.value)}
-                                                    className="w-full px-3 py-2 bg-white/10 border border-white/20 rounded-lg text-white text-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
+                                                    className="w-full px-3 py-2 bg-white border border-gray-200 rounded-lg text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-gray-100"
                                                     placeholder="+1 (555) 123-4567"
                                                 />
                                             </div>
 
                                             <div>
-                                                <label className="block text-xs text-gray-400 mb-1">Relationship *</label>
+                                                <label className="block text-xs text-gray-500 mb-1">Relationship *</label>
                                                 <select
                                                     value={referee.relationship}
                                                     onChange={(e) => updateReferee(index, 'relationship', e.target.value)}
-                                                    className="w-full px-3 py-2 bg-white/10 border border-white/20 rounded-lg text-white text-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
+                                                    className="w-full px-3 py-2 bg-white border border-gray-200 rounded-lg text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-gray-100"
                                                 >
                                                     {REFEREE_RELATIONSHIPS.map((rel) => (
                                                         <option key={rel} value={rel}>{rel}</option>
@@ -329,23 +329,23 @@ export default function ApplyJobPage() {
                                             </div>
 
                                             <div>
-                                                <label className="block text-xs text-gray-400 mb-1">Company</label>
+                                                <label className="block text-xs text-gray-500 mb-1">Company</label>
                                                 <input
                                                     type="text"
                                                     value={referee.company}
                                                     onChange={(e) => updateReferee(index, 'company', e.target.value)}
-                                                    className="w-full px-3 py-2 bg-white/10 border border-white/20 rounded-lg text-white text-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
+                                                    className="w-full px-3 py-2 bg-white border border-gray-200 rounded-lg text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-gray-100"
                                                     placeholder="Company Name"
                                                 />
                                             </div>
 
                                             <div>
-                                                <label className="block text-xs text-gray-400 mb-1">Position</label>
+                                                <label className="block text-xs text-gray-500 mb-1">Position</label>
                                                 <input
                                                     type="text"
                                                     value={referee.position}
                                                     onChange={(e) => updateReferee(index, 'position', e.target.value)}
-                                                    className="w-full px-3 py-2 bg-white/10 border border-white/20 rounded-lg text-white text-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
+                                                    className="w-full px-3 py-2 bg-white border border-gray-200 rounded-lg text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-gray-100"
                                                     placeholder="Engineering Manager"
                                                 />
                                             </div>
@@ -357,7 +357,7 @@ export default function ApplyJobPage() {
                                     <button
                                         type="button"
                                         onClick={addReferee}
-                                        className="w-full py-3 glass rounded-lg text-white hover:bg-white/20 transition-colors"
+                                        className="w-full py-3 bg-gray-50 border border-gray-100 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors"
                                     >
                                         + Add Another Referee
                                     </button>
@@ -368,14 +368,14 @@ export default function ApplyJobPage() {
                                 <button
                                     type="button"
                                     onClick={prevStep}
-                                    className="flex-1 glass text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-white/20 transition-colors"
+                                    className="flex-1 bg-white border border-slate-200 text-slate-700 px-8 py-4 rounded-lg text-lg font-bold hover:bg-slate-50 transition-colors shadow-sm"
                                 >
                                     ← Back
                                 </button>
                                 <button
                                     type="button"
                                     onClick={nextStep}
-                                    className="flex-1 gradient-primary text-white px-8 py-4 rounded-lg text-lg font-semibold hover:opacity-90 transition-opacity"
+                                    className="flex-1 bg-blue-600 text-white px-8 py-4 rounded-lg text-lg font-bold hover:bg-blue-700 transition-colors shadow-lg shadow-blue-100"
                                 >
                                     Next: Review →
                                 </button>
@@ -386,30 +386,32 @@ export default function ApplyJobPage() {
                     {/* Step 3: Review */}
                     {step === 3 && (
                         <div className="space-y-6 animate-fade-in">
-                            <div className="glass p-6 rounded-2xl">
-                                <h2 className="text-xl font-bold text-white mb-4">Review Your Application</h2>
+                            <div className="bg-white border border-slate-200 p-6 rounded-xl shadow-sm">
+                                <h2 className="text-xl font-bold text-slate-900 mb-6">Review Your Application</h2>
 
-                                <div className="space-y-4">
+                                <div className="space-y-6">
                                     <div>
-                                        <h3 className="text-sm font-semibold text-gray-400 mb-1">Resume</h3>
-                                        <p className="text-white break-all">{formData.resumeUrl}</p>
+                                        <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Resume URL</h3>
+                                        <p className="text-slate-900 font-bold break-all bg-slate-50 p-3 rounded-lg border border-slate-100">{formData.resumeUrl}</p>
                                     </div>
 
                                     {formData.coverLetter && (
                                         <div>
-                                            <h3 className="text-sm font-semibold text-gray-400 mb-1">Cover Letter</h3>
-                                            <p className="text-white whitespace-pre-line">{formData.coverLetter}</p>
+                                            <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Cover Letter</h3>
+                                            <p className="text-slate-600 whitespace-pre-line bg-slate-50 p-4 rounded-lg border border-slate-100 leading-relaxed font-medium">{formData.coverLetter}</p>
                                         </div>
                                     )}
 
                                     <div>
-                                        <h3 className="text-sm font-semibold text-gray-400 mb-2">Referees ({referees.filter(r => r.name && r.email).length})</h3>
-                                        {referees.filter(r => r.name && r.email).map((referee, index) => (
-                                            <div key={index} className="mb-2 p-3 bg-white/5 rounded-lg">
-                                                <p className="text-white font-medium">{referee.name}</p>
-                                                <p className="text-sm text-gray-400">{referee.email} • {referee.relationship}</p>
-                                            </div>
-                                        ))}
+                                        <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">Professional Referees ({referees.filter(r => r.name && r.email).length})</h3>
+                                        <div className="space-y-3">
+                                            {referees.filter(r => r.name && r.email).map((referee, index) => (
+                                                <div key={index} className="p-4 bg-slate-50 rounded-lg border border-slate-100">
+                                                    <p className="text-slate-900 font-bold">{referee.name}</p>
+                                                    <p className="text-sm text-slate-500 font-medium">{referee.email} • {referee.relationship}</p>
+                                                </div>
+                                            ))}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -418,14 +420,14 @@ export default function ApplyJobPage() {
                                 <button
                                     type="button"
                                     onClick={prevStep}
-                                    className="flex-1 glass text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-white/20 transition-colors"
+                                    className="flex-1 bg-white border border-slate-200 text-slate-700 px-8 py-4 rounded-lg text-lg font-bold hover:bg-slate-50 transition-colors shadow-sm"
                                 >
                                     ← Back
                                 </button>
                                 <button
                                     type="submit"
                                     disabled={submitting}
-                                    className="flex-1 gradient-primary text-white px-8 py-4 rounded-lg text-lg font-semibold hover:opacity-90 transition-opacity disabled:opacity-50"
+                                    className="flex-1 bg-blue-600 text-white px-8 py-4 rounded-lg text-lg font-bold hover:bg-blue-700 transition-colors shadow-lg shadow-blue-100 disabled:opacity-50"
                                 >
                                     {submitting ? 'Submitting...' : 'Submit Application'}
                                 </button>

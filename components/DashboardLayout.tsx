@@ -32,28 +32,28 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
     const links = isRecruiter ? recruiterLinks : employeeLinks;
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-violet-900">
+        <div className="min-h-screen bg-background">
             {/* Header */}
-            <header className="glass-dark sticky top-0 z-50 border-b border-white/10">
+            <header className="border-b border-gray-100 bg-white/80 backdrop-blur-md sticky top-0 z-50">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between items-center h-16">
-                        <Link href="/" className="flex items-center space-x-2">
-                            <div className="w-8 h-8 gradient-primary rounded-lg"></div>
-                            <span className="text-xl font-bold text-white">RecruitVerify</span>
+                        <Link href="/" className="flex items-center space-x-2 group">
+                            <div className="w-8 h-8 bg-blue-600 rounded-lg group-hover:bg-blue-700 transition-colors"></div>
+                            <span className="text-xl font-bold text-slate-900">RecruitVerify</span>
                         </Link>
 
                         <div className="flex items-center space-x-4">
                             <div className="text-right">
-                                <p className="text-sm font-medium text-white">
+                                <p className="text-sm font-bold text-slate-800">
                                     {user?.firstName} {user?.lastName}
                                 </p>
-                                <p className="text-xs text-gray-400">
+                                <p className="text-xs text-slate-500">
                                     {isRecruiter ? 'Recruiter' : 'Employee'}
                                 </p>
                             </div>
                             <button
                                 onClick={logout}
-                                className="text-gray-300 hover:text-white transition-colors text-sm px-3 py-1.5 glass rounded-lg"
+                                className="text-slate-600 hover:text-rose-600 transition-colors text-sm px-3 py-1.5 border border-slate-200 rounded-lg hover:bg-slate-50"
                             >
                                 Logout
                             </button>
@@ -66,7 +66,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
                 <div className="flex flex-col lg:flex-row gap-8">
                     {/* Sidebar */}
                     <aside className="lg:w-64 flex-shrink-0">
-                        <nav className="glass p-4 rounded-2xl space-y-2 sticky top-24">
+                        <nav className="bg-white border border-slate-200 p-4 rounded-xl space-y-2 sticky top-24 shadow-sm">
                             {links.map((link) => {
                                 const isActive = pathname === link.href;
                                 return (
@@ -74,8 +74,8 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
                                         key={link.href}
                                         href={link.href}
                                         className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-all ${isActive
-                                            ? 'gradient-primary text-white shadow-lg'
-                                            : 'text-gray-300 hover:bg-white/10'
+                                            ? 'bg-blue-50 text-blue-700 font-bold'
+                                            : 'text-slate-500 hover:bg-slate-50 hover:text-slate-700'
                                             }`}
                                     >
                                         <span className="text-xl">{link.icon}</span>

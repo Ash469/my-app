@@ -63,44 +63,44 @@ export default function JobsPage() {
     };
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-violet-900">
+        <div className="min-h-screen bg-background">
             <Navbar />
 
             <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
                 {/* Header */}
                 <div className="text-center mb-12 animate-fade-in">
-                    <h1 className="text-5xl font-bold text-white mb-4">
+                    <h1 className="text-5xl font-bold text-foreground mb-4">
                         Find Your Next
-                        <span className="block gradient-accent bg-clip-text text-transparent">
+                        <span className="block text-blue-600">
                             Dream Job
                         </span>
                     </h1>
-                    <p className="text-xl text-gray-300">
+                    <p className="text-xl text-gray-600">
                         Browse through {jobs.length > 0 ? 'thousands of' : ''} verified job opportunities
                     </p>
                 </div>
 
                 {/* Search and Filters */}
-                <div className="glass p-6 rounded-2xl mb-8 animate-fade-in">
+                <div className="bg-white border border-gray-100 p-6 rounded-2xl mb-8 animate-fade-in shadow-sm">
                     <form onSubmit={handleSearch} className="grid grid-cols-1 md:grid-cols-4 gap-4">
                         <input
                             type="text"
                             placeholder="Search jobs..."
                             value={search}
                             onChange={(e) => setSearch(e.target.value)}
-                            className="px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                            className="px-4 py-3 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-100"
                         />
                         <input
                             type="text"
                             placeholder="Location"
                             value={location}
                             onChange={(e) => setLocation(e.target.value)}
-                            className="px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                            className="px-4 py-3 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-100"
                         />
                         <select
                             value={employmentType}
                             onChange={(e) => setEmploymentType(e.target.value)}
-                            className="px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
+                            className="px-4 py-3 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-100 appearance-none"
                         >
                             <option value="">All Types</option>
                             <option value="FULL_TIME">Full Time</option>
@@ -110,9 +110,9 @@ export default function JobsPage() {
                         </select>
                         <button
                             type="submit"
-                            className="gradient-primary text-white px-6 py-3 rounded-lg font-semibold hover:opacity-90 transition-opacity"
+                            className="bg-blue-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-blue-700 transition-colors shadow-sm"
                         >
-                            Search
+                            Search Jobs
                         </button>
                     </form>
                 </div>
@@ -121,18 +121,18 @@ export default function JobsPage() {
                 {loading ? (
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         {[...Array(6)].map((_, i) => (
-                            <div key={i} className="glass p-6 rounded-2xl h-64 animate-pulse">
-                                <div className="h-6 bg-white/10 rounded mb-4"></div>
-                                <div className="h-4 bg-white/10 rounded mb-2"></div>
-                                <div className="h-4 bg-white/10 rounded w-2/3"></div>
+                            <div key={i} className="bg-white border border-slate-200 p-6 rounded-xl h-64 animate-pulse shadow-sm">
+                                <div className="h-6 bg-slate-100 rounded mb-4"></div>
+                                <div className="h-4 bg-slate-100 rounded mb-2"></div>
+                                <div className="h-4 bg-slate-100 rounded w-2/3"></div>
                             </div>
                         ))}
                     </div>
                 ) : jobs.length === 0 ? (
-                    <div className="glass p-12 rounded-2xl text-center">
+                    <div className="bg-white border border-gray-100 p-12 rounded-2xl text-center shadow-sm">
                         <div className="text-6xl mb-4">🔍</div>
-                        <h3 className="text-2xl font-bold text-white mb-2">No jobs found</h3>
-                        <p className="text-gray-400">Try adjusting your search criteria</p>
+                        <h3 className="text-2xl font-bold text-foreground mb-2">No jobs found</h3>
+                        <p className="text-gray-500">Try adjusting your search criteria</p>
                     </div>
                 ) : (
                     <>
@@ -148,17 +148,17 @@ export default function JobsPage() {
                                 <button
                                     onClick={() => setPage(Math.max(1, page - 1))}
                                     disabled={page === 1}
-                                    className="px-4 py-2 glass rounded-lg text-white disabled:opacity-50 disabled:cursor-not-allowed hover:bg-white/20 transition-colors"
+                                    className="px-4 py-2 bg-white border border-slate-200 rounded-lg text-slate-700 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-slate-50 transition-colors font-bold shadow-sm"
                                 >
                                     Previous
                                 </button>
-                                <span className="text-white px-4">
+                                <span className="text-slate-600 px-4 font-medium">
                                     Page {page} of {totalPages}
                                 </span>
                                 <button
                                     onClick={() => setPage(Math.min(totalPages, page + 1))}
                                     disabled={page === totalPages}
-                                    className="px-4 py-2 glass rounded-lg text-white disabled:opacity-50 disabled:cursor-not-allowed hover:bg-white/20 transition-colors"
+                                    className="px-4 py-2 bg-white border border-slate-200 rounded-lg text-slate-700 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-slate-50 transition-colors font-bold shadow-sm"
                                 >
                                     Next
                                 </button>

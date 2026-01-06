@@ -5,17 +5,17 @@ interface StatusBadgeProps {
     size?: 'sm' | 'md' | 'lg';
 }
 
-const statusConfig: Record<string, { label: string; color: string; icon: string }> = {
-    SUBMITTED: { label: 'Submitted', color: 'bg-blue-500/20 text-blue-400 border-blue-500/30', icon: '📤' },
-    UNDER_REVIEW: { label: 'Under Review', color: 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30', icon: '🔍' },
-    REFEREE_CONTACTED: { label: 'Referee Contacted', color: 'bg-purple-500/20 text-purple-400 border-purple-500/30', icon: '📞' },
-    VERIFIED: { label: 'Verified', color: 'bg-green-500/20 text-green-400 border-green-500/30', icon: '✅' },
-    REJECTED: { label: 'Rejected', color: 'bg-red-500/20 text-red-400 border-red-500/30', icon: '❌' },
-    HIRED: { label: 'Hired', color: 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30', icon: '🎉' },
+const statusConfig: Record<string, { label: string; color: string; icon?: string }> = {
+    SUBMITTED: { label: 'Submitted', color: 'bg-blue-50 text-blue-700 border-blue-200',  },
+    UNDER_REVIEW: { label: 'Under Review', color: 'bg-amber-50 text-amber-700 border-amber-200',  },
+    REFEREE_CONTACTED: { label: 'Referee Contacted', color: 'bg-purple-50 text-purple-700 border-purple-200', },
+    VERIFIED: { label: 'Verified', color: 'bg-emerald-50 text-emerald-700 border-emerald-200', },
+    REJECTED: { label: 'Rejected', color: 'bg-rose-50 text-rose-700 border-rose-200',  },
+    HIRED: { label: 'Hired', color: 'bg-blue-600 text-white border-blue-600',  },
 };
 
 export default function StatusBadge({ status, size = 'md' }: StatusBadgeProps) {
-    const config = statusConfig[status] || { label: status, color: 'bg-gray-500/20 text-gray-400 border-gray-500/30', icon: '📋' };
+    const config = statusConfig[status] || { label: status, color: 'bg-gray-50 text-gray-600 border-gray-100',  };
 
     const sizeClasses = {
         sm: 'px-2 py-1 text-xs',
@@ -24,7 +24,7 @@ export default function StatusBadge({ status, size = 'md' }: StatusBadgeProps) {
     };
 
     return (
-        <span className={`inline-flex items-center space-x-1.5 ${sizeClasses[size]} ${config.color} border rounded-full font-medium backdrop-blur-sm`}>
+        <span className={`inline-flex items-center space-x-1.5 ${sizeClasses[size]} ${config.color} border rounded-full font-medium`}>
             <span>{config.icon}</span>
             <span>{config.label}</span>
         </span>

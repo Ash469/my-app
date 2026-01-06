@@ -81,10 +81,10 @@ export default function EmployeeDashboard() {
         return (
             <DashboardLayout>
                 <div className="animate-pulse space-y-6">
-                    <div className="h-8 bg-white/10 rounded w-1/3"></div>
+                    <div className="h-8 bg-gray-100 rounded w-1/3"></div>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                         {[...Array(4)].map((_, i) => (
-                            <div key={i} className="h-32 bg-white/10 rounded-2xl"></div>
+                            <div key={i} className="h-32 bg-gray-100 rounded-2xl"></div>
                         ))}
                     </div>
                 </div>
@@ -97,10 +97,10 @@ export default function EmployeeDashboard() {
             <div className="space-y-8">
                 {/* Welcome Header */}
                 <div className="animate-fade-in">
-                    <h1 className="text-3xl font-bold text-white mb-2">
+                    <h1 className="text-3xl font-bold text-foreground mb-2">
                         Welcome back, {user?.firstName}! 👋
                     </h1>
-                    <p className="text-gray-400">Here's an overview of your job applications</p>
+                    <p className="text-gray-500">Here's an overview of your job applications</p>
                 </div>
 
                 {/* Stats Grid */}
@@ -109,61 +109,61 @@ export default function EmployeeDashboard() {
                         title="Total Applications"
                         value={stats.totalApplications}
                         icon="📝"
-                        gradient="gradient-primary"
+                        color="primary"
                     />
                     <StatsCard
                         title="Pending Review"
                         value={stats.pending}
                         icon="⏳"
-                        gradient="bg-gradient-to-br from-yellow-500 to-orange-500"
+                        color="warning"
                     />
                     <StatsCard
                         title="Under Review"
                         value={stats.underReview}
                         icon="🔍"
-                        gradient="bg-gradient-to-br from-blue-500 to-cyan-500"
+                        color="primary"
                     />
                     <StatsCard
                         title="Hired"
                         value={stats.hired}
                         icon="🎉"
-                        gradient="bg-gradient-to-br from-green-500 to-emerald-500"
+                        color="success"
                     />
                 </div>
 
                 {/* Quick Actions */}
-                <div className="glass p-6 rounded-2xl animate-fade-in">
-                    <h2 className="text-xl font-bold text-white mb-4">Quick Actions</h2>
+                <div className="bg-white border border-gray-100 p-6 rounded-2xl animate-fade-in shadow-sm">
+                    <h2 className="text-xl font-bold text-foreground mb-4">Quick Actions</h2>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                         <button
                             onClick={() => router.push('/jobs')}
-                            className="glass p-4 rounded-xl hover:bg-white/20 transition-all text-left group"
+                            className="bg-slate-50 border border-slate-200 p-4 rounded-xl hover:bg-slate-100 transition-all text-left group"
                         >
-                            <div className="text-2xl mb-2">🔍</div>
-                            <h3 className="font-semibold text-white mb-1 group-hover:text-purple-300 transition-colors">
+                            <div className="text-2xl mb-2 text-blue-600">🔍</div>
+                            <h3 className="font-bold text-slate-800 mb-1 group-hover:text-blue-600 transition-colors">
                                 Browse Jobs
                             </h3>
-                            <p className="text-sm text-gray-400">Find your next opportunity</p>
+                            <p className="text-sm text-slate-500">Find your next opportunity</p>
                         </button>
                         <button
                             onClick={() => router.push('/dashboard/employee/applications')}
-                            className="glass p-4 rounded-xl hover:bg-white/20 transition-all text-left group"
+                            className="bg-slate-50 border border-slate-200 p-4 rounded-xl hover:bg-slate-100 transition-all text-left group"
                         >
-                            <div className="text-2xl mb-2">📋</div>
-                            <h3 className="font-semibold text-white mb-1 group-hover:text-purple-300 transition-colors">
+                            <div className="text-2xl mb-2 text-blue-600">📋</div>
+                            <h3 className="font-bold text-slate-800 mb-1 group-hover:text-blue-600 transition-colors">
                                 My Applications
                             </h3>
-                            <p className="text-sm text-gray-400">Track your applications</p>
+                            <p className="text-sm text-slate-500">Track your applications</p>
                         </button>
                         <button
                             onClick={() => router.push('/dashboard/employee/profile')}
-                            className="glass p-4 rounded-xl hover:bg-white/20 transition-all text-left group"
+                            className="bg-slate-50 border border-slate-200 p-4 rounded-xl hover:bg-slate-100 transition-all text-left group"
                         >
-                            <div className="text-2xl mb-2">👤</div>
-                            <h3 className="font-semibold text-white mb-1 group-hover:text-purple-300 transition-colors">
+                            <div className="text-2xl mb-2 text-blue-600">👤</div>
+                            <h3 className="font-bold text-slate-800 mb-1 group-hover:text-blue-600 transition-colors">
                                 Update Profile
                             </h3>
-                            <p className="text-sm text-gray-400">Keep your info current</p>
+                            <p className="text-sm text-slate-500">Keep your info current</p>
                         </button>
                     </div>
                 </div>
@@ -171,23 +171,23 @@ export default function EmployeeDashboard() {
                 {/* Recent Applications */}
                 <div className="animate-fade-in">
                     <div className="flex items-center justify-between mb-6">
-                        <h2 className="text-2xl font-bold text-white">Recent Applications</h2>
+                        <h2 className="text-2xl font-bold text-foreground">Recent Applications</h2>
                         <button
                             onClick={() => router.push('/dashboard/employee/applications')}
-                            className="text-purple-400 hover:text-purple-300 transition-colors font-medium"
+                            className="text-blue-600 hover:text-blue-700 hover:underline transition-colors font-bold"
                         >
                             View All →
                         </button>
                     </div>
 
                     {recentApplications.length === 0 ? (
-                        <div className="glass p-12 rounded-2xl text-center">
+                        <div className="bg-white border border-gray-100 p-12 rounded-2xl text-center shadow-sm">
                             <div className="text-6xl mb-4">📭</div>
-                            <h3 className="text-xl font-bold text-white mb-2">No applications yet</h3>
-                            <p className="text-gray-400 mb-6">Start applying to jobs to see them here</p>
+                            <h3 className="text-xl font-bold text-foreground mb-2">No applications yet</h3>
+                            <p className="text-gray-500 mb-6">Start applying to jobs to see them here</p>
                             <button
                                 onClick={() => router.push('/jobs')}
-                                className="gradient-primary text-white px-6 py-3 rounded-lg font-semibold hover:opacity-90 transition-opacity"
+                                className="bg-blue-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-blue-700 transition-colors shadow-sm"
                             >
                                 Browse Jobs
                             </button>

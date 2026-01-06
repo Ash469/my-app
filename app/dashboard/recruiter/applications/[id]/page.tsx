@@ -166,8 +166,8 @@ export default function ApplicationDetailsPage() {
         return (
             <DashboardLayout>
                 <div className="animate-pulse space-y-6">
-                    <div className="h-8 bg-white/10 rounded w-1/3"></div>
-                    <div className="glass p-6 rounded-2xl h-96"></div>
+                    <div className="h-8 bg-slate-100 rounded w-1/3"></div>
+                    <div className="bg-white border border-slate-200 p-6 rounded-xl h-96 shadow-sm"></div>
                 </div>
             </DashboardLayout>
         );
@@ -176,12 +176,12 @@ export default function ApplicationDetailsPage() {
     if (!application) {
         return (
             <DashboardLayout>
-                <div className="glass p-12 rounded-2xl text-center">
+                <div className="bg-white border border-gray-100 p-12 rounded-2xl text-center shadow-sm">
                     <div className="text-6xl mb-4">❌</div>
-                    <h2 className="text-2xl font-bold text-white mb-2">Application not found</h2>
+                    <h2 className="text-2xl font-bold text-foreground mb-2">Application not found</h2>
                     <button
                         onClick={() => router.back()}
-                        className="gradient-primary text-white px-6 py-3 rounded-lg font-semibold hover:opacity-90 transition-opacity"
+                        className="bg-gray-100 text-gray-700 px-6 py-3 rounded-lg font-semibold hover:bg-gray-200 transition-colors"
                     >
                         Go Back
                     </button>
@@ -194,11 +194,11 @@ export default function ApplicationDetailsPage() {
         <DashboardLayout>
             {/* Connecting Loader Overlay */}
             {connectingReferee && (
-                <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center">
-                    <div className="glass p-8 rounded-2xl text-center">
-                        <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-white mx-auto mb-4"></div>
-                        <p className="text-xl font-semibold text-white">Establishing connection with {connectingReferee}...</p>
-                        <p className="text-sm text-gray-400 mt-2">Please wait</p>
+                <div className="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+                    <div className="bg-white border border-slate-200 p-8 rounded-xl text-center shadow-2xl max-w-sm w-full">
+                        <div className="animate-spin rounded-full h-12 w-12 border-4 border-blue-600 border-t-transparent mx-auto mb-4"></div>
+                        <p className="text-xl font-bold text-slate-900 mb-2">Establishing connection...</p>
+                        <p className="text-sm text-slate-500 font-medium">Connecting with {connectingReferee}</p>
                     </div>
                 </div>
             )}
@@ -208,9 +208,9 @@ export default function ApplicationDetailsPage() {
                 <div className="mb-8 animate-fade-in">
                     <div className="flex items-center justify-between mb-4">
                         <div>
-                            <h1 className="text-3xl font-bold text-white mb-2">Application Review</h1>
-                            <p className="text-gray-400">
-                                {application.employeeId.firstName} {application.employeeId.lastName} • {application.jobId.title}
+                            <h1 className="text-3xl font-bold text-slate-900 mb-2">Application Review</h1>
+                            <p className="text-slate-500 font-medium">
+                                {application.employeeId.firstName} {application.employeeId.lastName} • <span className="text-blue-600 font-bold">{application.jobId.title}</span>
                             </p>
                         </div>
                         <StatusBadge status={application.status} />
@@ -221,57 +221,57 @@ export default function ApplicationDetailsPage() {
                     {/* Main Content */}
                     <div className="lg:col-span-2 space-y-6">
                         {/* Candidate Profile */}
-                        <div className="glass p-6 rounded-2xl animate-fade-in">
-                            <h2 className="text-xl font-bold text-white mb-4">Candidate Profile</h2>
+                        <div className="bg-white border border-slate-200 p-6 rounded-xl animate-fade-in shadow-sm">
+                            <h2 className="text-xl font-bold text-slate-900 mb-4">Candidate Profile</h2>
 
                             <div className="space-y-4">
                                 <div>
-                                    <h3 className="text-sm font-semibold text-gray-400 mb-1">Name</h3>
-                                    <p className="text-white">{application.employeeId.firstName} {application.employeeId.lastName}</p>
+                                    <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Name</h3>
+                                    <p className="text-slate-900 font-bold text-lg">{application.employeeId.firstName} {application.employeeId.lastName}</p>
                                 </div>
 
-                                <div className="grid grid-cols-2 gap-4">
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                     <div>
-                                        <h3 className="text-sm font-semibold text-gray-400 mb-1">Email</h3>
-                                        <p className="text-white">{application.employeeId.email}</p>
+                                        <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Email</h3>
+                                        <p className="text-slate-900 font-medium">{application.employeeId.email}</p>
                                     </div>
                                     {application.employeeId.phone && (
                                         <div>
-                                            <h3 className="text-sm font-semibold text-gray-400 mb-1">Phone</h3>
-                                            <p className="text-white">{application.employeeId.phone}</p>
+                                            <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Phone</h3>
+                                            <p className="text-slate-900 font-medium">{application.employeeId.phone}</p>
                                         </div>
                                     )}
                                 </div>
 
                                 {application.employeeId.position && (
                                     <div>
-                                        <h3 className="text-sm font-semibold text-gray-400 mb-1">Current Position</h3>
-                                        <p className="text-white">{application.employeeId.position}</p>
+                                        <h3 className="text-sm font-semibold text-gray-500 mb-1">Current Position</h3>
+                                        <p className="text-foreground">{application.employeeId.position}</p>
                                     </div>
                                 )}
 
                                 {application.employeeId.yearsOfExperience !== undefined && (
                                     <div>
-                                        <h3 className="text-sm font-semibold text-gray-400 mb-1">Experience</h3>
-                                        <p className="text-white">{application.employeeId.yearsOfExperience} years</p>
+                                        <h3 className="text-sm font-semibold text-gray-500 mb-1">Experience</h3>
+                                        <p className="text-foreground">{application.employeeId.yearsOfExperience} years</p>
                                     </div>
                                 )}
 
                                 {application.employeeId.bio && (
                                     <div>
-                                        <h3 className="text-sm font-semibold text-gray-400 mb-1">Bio</h3>
-                                        <p className="text-white">{application.employeeId.bio}</p>
+                                        <h3 className="text-sm font-semibold text-gray-500 mb-1">Bio</h3>
+                                        <p className="text-foreground">{application.employeeId.bio}</p>
                                     </div>
                                 )}
 
                                 {application.employeeId.skills && application.employeeId.skills.length > 0 && (
                                     <div>
-                                        <h3 className="text-sm font-semibold text-gray-400 mb-2">Skills</h3>
+                                        <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Skills</h3>
                                         <div className="flex flex-wrap gap-2">
                                             {application.employeeId.skills.map((skill, index) => (
                                                 <span
                                                     key={index}
-                                                    className="px-3 py-1 bg-purple-500/20 text-purple-300 border border-purple-500/30 rounded-full text-sm"
+                                                    className="px-3 py-1 bg-blue-50 text-blue-700 border border-blue-100 rounded-lg text-sm font-bold"
                                                 >
                                                     {skill}
                                                 </span>
@@ -282,8 +282,8 @@ export default function ApplicationDetailsPage() {
 
                                 {application.employeeId.education && (
                                     <div>
-                                        <h3 className="text-sm font-semibold text-gray-400 mb-1">Education</h3>
-                                        <p className="text-white">
+                                        <h3 className="text-sm font-semibold text-gray-500 mb-1">Education</h3>
+                                        <p className="text-foreground">
                                             {application.employeeId.education.degree}
                                             {application.employeeId.education.institution && ` • ${application.employeeId.education.institution}`}
                                             {application.employeeId.education.year && ` • ${application.employeeId.education.year}`}
@@ -297,7 +297,7 @@ export default function ApplicationDetailsPage() {
                                             href={application.employeeId.linkedIn}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="text-purple-400 hover:text-purple-300 text-sm"
+                                            className="text-primary hover:underline text-sm font-medium"
                                         >
                                             LinkedIn →
                                         </a>
@@ -307,7 +307,7 @@ export default function ApplicationDetailsPage() {
                                             href={application.employeeId.portfolio}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="text-purple-400 hover:text-purple-300 text-sm"
+                                            className="text-primary hover:underline text-sm font-medium"
                                         >
                                             Portfolio →
                                         </a>
@@ -317,17 +317,17 @@ export default function ApplicationDetailsPage() {
                         </div>
 
                         {/* Resume & Cover Letter */}
-                        <div className="glass p-6 rounded-2xl animate-fade-in">
-                            <h2 className="text-xl font-bold text-white mb-4">Application Materials</h2>
+                        <div className="bg-white border border-slate-200 p-6 rounded-xl animate-fade-in shadow-sm">
+                            <h2 className="text-xl font-bold text-slate-900 mb-4">Application Materials</h2>
 
                             <div className="space-y-4">
                                 <div>
-                                    <h3 className="text-sm font-semibold text-gray-400 mb-2">Resume</h3>
+                                    <h3 className="text-sm font-semibold text-gray-500 mb-2">Resume</h3>
                                     <a
                                         href={application.resumeUrl}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="inline-flex items-center space-x-2 px-4 py-2 glass rounded-lg text-white hover:bg-white/20 transition-colors"
+                                        className="inline-flex items-center space-x-2 px-4 py-2 bg-slate-100 border border-slate-200 rounded-lg text-slate-700 hover:bg-slate-200 transition-colors font-bold"
                                     >
                                         <span>📄</span>
                                         <span>View Resume</span>
@@ -336,8 +336,8 @@ export default function ApplicationDetailsPage() {
 
                                 {application.coverLetter && (
                                     <div>
-                                        <h3 className="text-sm font-semibold text-gray-400 mb-2">Cover Letter</h3>
-                                        <p className="text-white whitespace-pre-line p-4 bg-white/5 rounded-lg">
+                                        <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Cover Letter</h3>
+                                        <p className="text-slate-600 whitespace-pre-line p-4 bg-slate-50 rounded-lg border border-slate-200 leading-relaxed font-medium">
                                             {application.coverLetter}
                                         </p>
                                     </div>
@@ -346,45 +346,45 @@ export default function ApplicationDetailsPage() {
                         </div>
 
                         {/* Referees */}
-                        <div className="glass p-6 rounded-2xl animate-fade-in">
-                            <h2 className="text-xl font-bold text-white mb-4">Professional Referees</h2>
+                        <div className="bg-white border border-slate-200 p-6 rounded-xl animate-fade-in shadow-sm">
+                            <h2 className="text-xl font-bold text-slate-900 mb-4">Professional Referees</h2>
 
                             <div className="space-y-4">
                                 {application.referees.map((referee) => (
-                                    <div key={referee._id} className="p-4 bg-white/5 rounded-lg border border-white/10">
+                                    <div key={referee._id} className="p-4 bg-slate-50 border border-slate-200 rounded-lg">
                                         <div className="flex items-start justify-between mb-3">
                                             <div>
-                                                <h3 className="font-semibold text-white mb-1">{referee.name}</h3>
-                                                <p className="text-sm text-gray-400">{referee.relationship}</p>
+                                                <h3 className="font-bold text-slate-900 mb-1">{referee.name}</h3>
+                                                <p className="text-sm text-slate-500 font-medium">{referee.relationship}</p>
                                             </div>
                                             <button
                                                 onClick={() => handleContactReferee(referee._id, referee.name)}
-                                                className="px-4 py-2 gradient-primary rounded-lg text-white text-sm font-semibold hover:opacity-90 transition-opacity"
+                                                className="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-bold hover:bg-blue-700 transition-colors shadow-sm"
                                             >
                                                 💬 Contact
                                             </button>
                                         </div>
                                         <div className="grid grid-cols-2 gap-2 text-sm">
                                             <div>
-                                                <span className="text-gray-400">Email:</span>
-                                                <span className="text-white ml-2">{referee.email}</span>
+                                                <span className="text-gray-500">Email:</span>
+                                                <span className="text-foreground ml-2">{referee.email}</span>
                                             </div>
                                             {referee.phone && (
                                                 <div>
-                                                    <span className="text-gray-400">Phone:</span>
-                                                    <span className="text-white ml-2">{referee.phone}</span>
+                                                    <span className="text-gray-500">Phone:</span>
+                                                    <span className="text-foreground ml-2">{referee.phone}</span>
                                                 </div>
                                             )}
                                             {referee.company && (
                                                 <div>
-                                                    <span className="text-gray-400">Company:</span>
-                                                    <span className="text-white ml-2">{referee.company}</span>
+                                                    <span className="text-gray-500">Company:</span>
+                                                    <span className="text-foreground ml-2">{referee.company}</span>
                                                 </div>
                                             )}
                                             {referee.position && (
                                                 <div>
-                                                    <span className="text-gray-400">Position:</span>
-                                                    <span className="text-white ml-2">{referee.position}</span>
+                                                    <span className="text-gray-500">Position:</span>
+                                                    <span className="text-foreground ml-2">{referee.position}</span>
                                                 </div>
                                             )}
                                         </div>
@@ -397,27 +397,25 @@ export default function ApplicationDetailsPage() {
                     {/* Sidebar - Actions */}
                     <div className="space-y-6">
                         {/* Update Status */}
-                        <div className="glass p-6 rounded-2xl animate-fade-in">
-                            <h2 className="text-lg font-bold text-white mb-4">Update Status</h2>
+                        <div className="bg-white border border-slate-200 p-6 rounded-xl animate-fade-in shadow-sm">
+                            <h2 className="text-lg font-bold text-slate-900 mb-4">Update Status</h2>
 
                             <div className="space-y-4">
-                                <div>
-                                    <label className="block text-sm font-medium text-gray-300 mb-2">
-                                        Status
-                                    </label>
-                                    <select
-                                        value={newStatus}
-                                        onChange={(e) => setNewStatus(e.target.value)}
-                                        className="w-full px-3 py-2 bg-white/10 border border-white/20 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
-                                    >
-                                        {Object.values(ApplicationStatus).map((status) => (
-                                            <option key={status} value={status}>{status.replace('_', ' ')}</option>
-                                        ))}
-                                    </select>
-                                </div>
+                                <label className="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">
+                                    Status
+                                </label>
+                                <select
+                                    value={newStatus}
+                                    onChange={(e) => setNewStatus(e.target.value)}
+                                    className="w-full px-4 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 font-bold focus:outline-none focus:ring-2 focus:ring-blue-100"
+                                >
+                                    {Object.values(ApplicationStatus).map((status) => (
+                                        <option key={status} value={status}>{status.replace('_', ' ')}</option>
+                                    ))}
+                                </select>
 
                                 <div>
-                                    <label className="block text-sm font-medium text-gray-300 mb-2">
+                                    <label className="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">
                                         Feedback (visible to candidate)
                                     </label>
                                     <textarea
@@ -425,20 +423,20 @@ export default function ApplicationDetailsPage() {
                                         onChange={(e) => setFeedback(e.target.value)}
                                         rows={3}
                                         maxLength={500}
-                                        className="w-full px-3 py-2 bg-white/10 border border-white/20 rounded-lg text-white text-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
+                                        className="w-full px-4 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-blue-100 placeholder-slate-400 font-medium"
                                         placeholder="Feedback for the candidate..."
                                     />
                                 </div>
 
                                 <div>
-                                    <label className="block text-sm font-medium text-gray-300 mb-2">
+                                    <label className="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">
                                         Internal Notes (private)
                                     </label>
                                     <textarea
                                         value={internalNotes}
                                         onChange={(e) => setInternalNotes(e.target.value)}
                                         rows={3}
-                                        className="w-full px-3 py-2 bg-white/10 border border-white/20 rounded-lg text-white text-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
+                                        className="w-full px-4 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-blue-100 placeholder-slate-400 font-medium"
                                         placeholder="Internal notes..."
                                     />
                                 </div>
@@ -446,7 +444,7 @@ export default function ApplicationDetailsPage() {
                                 <button
                                     onClick={handleUpdateStatus}
                                     disabled={updating}
-                                    className="w-full gradient-primary text-white px-4 py-3 rounded-lg font-semibold hover:opacity-90 transition-opacity disabled:opacity-50"
+                                    className="w-full bg-blue-600 text-white px-4 py-3 rounded-lg font-bold hover:bg-blue-700 transition-colors disabled:opacity-50 shadow-sm"
                                 >
                                     {updating ? 'Updating...' : 'Update Application'}
                                 </button>
@@ -454,13 +452,13 @@ export default function ApplicationDetailsPage() {
                         </div>
 
                         {/* Application Info */}
-                        <div className="glass p-6 rounded-2xl animate-fade-in">
-                            <h2 className="text-lg font-bold text-white mb-4">Application Info</h2>
+                        <div className="bg-slate-50 border border-slate-200 p-6 rounded-xl animate-fade-in shadow-sm">
+                            <h2 className="text-lg font-bold text-slate-900 mb-4">Application Info</h2>
 
                             <div className="space-y-3 text-sm">
                                 <div>
-                                    <span className="text-gray-400">Applied:</span>
-                                    <p className="text-white">
+                                    <span className="text-gray-500">Applied:</span>
+                                    <p className="text-foreground">
                                         {new Date(application.createdAt).toLocaleDateString('en-US', {
                                             year: 'numeric',
                                             month: 'long',
@@ -469,12 +467,12 @@ export default function ApplicationDetailsPage() {
                                     </p>
                                 </div>
                                 <div>
-                                    <span className="text-gray-400">Job:</span>
-                                    <p className="text-white">{application.jobId.title}</p>
+                                    <span className="text-gray-500">Job:</span>
+                                    <p className="text-foreground">{application.jobId.title}</p>
                                 </div>
                                 <div>
-                                    <span className="text-gray-400">Location:</span>
-                                    <p className="text-white">{application.jobId.location}</p>
+                                    <span className="text-gray-500">Location:</span>
+                                    <p className="text-foreground">{application.jobId.location}</p>
                                 </div>
                             </div>
                         </div>

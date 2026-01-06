@@ -79,20 +79,20 @@ export default function RecruiterApplicationsPage() {
             <div className="space-y-6">
                 {/* Header */}
                 <div className="animate-fade-in">
-                    <h1 className="text-3xl font-bold text-white mb-2">Applications Received</h1>
-                    <p className="text-gray-400">Review and manage candidate applications</p>
+                    <h1 className="text-3xl font-bold text-foreground mb-2">Applications Received</h1>
+                    <p className="text-gray-500">Review and manage candidate applications</p>
                 </div>
 
                 {/* Filters */}
-                <div className="glass p-4 rounded-2xl animate-fade-in">
+                <div className="bg-white border border-gray-100 p-4 rounded-2xl animate-fade-in shadow-sm">
                     <div className="flex flex-wrap gap-2">
                         {statusFilters.map((status) => (
                             <button
                                 key={status.value}
                                 onClick={() => setFilter(status.value)}
-                                className={`px-4 py-2 rounded-lg font-medium transition-all ${filter === status.value
-                                    ? 'gradient-primary text-white'
-                                    : 'bg-white/10 text-gray-300 hover:bg-white/20'
+                                className={`px-4 py-2 rounded-lg font-bold border transition-all ${filter === status.value
+                                    ? 'bg-blue-600 text-white border-blue-600 shadow-sm'
+                                    : 'bg-white text-slate-600 hover:bg-slate-50 border-slate-200'
                                     }`}
                             >
                                 {status.label}
@@ -105,20 +105,20 @@ export default function RecruiterApplicationsPage() {
                 {loading ? (
                     <div className="space-y-4">
                         {[...Array(3)].map((_, i) => (
-                            <div key={i} className="glass p-6 rounded-2xl h-40 animate-pulse">
-                                <div className="h-6 bg-white/10 rounded mb-4"></div>
-                                <div className="h-4 bg-white/10 rounded mb-2"></div>
-                                <div className="h-4 bg-white/10 rounded w-2/3"></div>
+                            <div key={i} className="bg-white border border-gray-100 p-6 rounded-2xl h-40 animate-pulse shadow-sm">
+                                <div className="h-6 bg-gray-100 rounded mb-4"></div>
+                                <div className="h-4 bg-gray-100 rounded mb-2"></div>
+                                <div className="h-4 bg-gray-100 rounded w-2/3"></div>
                             </div>
                         ))}
                     </div>
                 ) : applications.length === 0 ? (
-                    <div className="glass p-12 rounded-2xl text-center">
+                    <div className="bg-white border border-gray-100 p-12 rounded-2xl text-center shadow-sm">
                         <div className="text-6xl mb-4">📭</div>
-                        <h3 className="text-2xl font-bold text-white mb-2">
+                        <h3 className="text-2xl font-bold text-foreground mb-2">
                             {filter === 'ALL' ? 'No applications yet' : `No ${filter.toLowerCase().replace('_', ' ')} applications`}
                         </h3>
-                        <p className="text-gray-400">
+                        <p className="text-gray-500">
                             {filter === 'ALL'
                                 ? 'Applications will appear here once candidates start applying'
                                 : 'Try selecting a different filter'}
@@ -127,34 +127,34 @@ export default function RecruiterApplicationsPage() {
                 ) : (
                     <div className="space-y-4">
                         {applications.map((application) => (
-                            <div key={application._id} className="glass p-6 rounded-2xl hover:scale-[1.01] transition-all animate-fade-in">
+                            <div key={application._id} className="bg-white border border-slate-200 p-6 rounded-xl hover:shadow-md transition-all animate-fade-in shadow-sm">
                                 <div className="flex items-start justify-between mb-4">
                                     <div className="flex-1">
                                         <div className="flex items-center space-x-3 mb-2">
-                                            <h3 className="text-lg font-bold text-white">
+                                            <h3 className="text-lg font-bold text-foreground">
                                                 {application.employeeId.firstName} {application.employeeId.lastName}
                                             </h3>
                                             <StatusBadge status={application.status} size="sm" />
                                         </div>
-                                        <p className="text-gray-300 mb-1">
-                                            Applied for: <Link href={`/jobs/${application.jobId._id}`} className="text-purple-400 hover:text-purple-300">
+                                        <p className="text-slate-600 mb-1">
+                                            Applied for: <Link href={`/jobs/${application.jobId._id}`} className="text-blue-600 hover:text-blue-700 hover:underline font-bold">
                                                 {application.jobId.title}
                                             </Link>
                                         </p>
-                                        <p className="text-sm text-gray-400">{application.employeeId.email}</p>
+                                        <p className="text-sm text-slate-500">{application.employeeId.email}</p>
                                     </div>
                                     <div className="flex items-center space-x-2">
                                         <a
                                             href={application.resumeUrl}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="px-4 py-2 glass rounded-lg text-white hover:bg-white/20 transition-colors text-sm"
+                                            className="px-4 py-2 bg-slate-100 border border-slate-200 rounded-lg text-slate-700 hover:bg-slate-200 transition-colors text-sm font-bold"
                                         >
                                             📄 Resume
                                         </a>
                                         <Link
                                             href={`/dashboard/recruiter/applications/${application._id}`}
-                                            className="px-4 py-2 gradient-primary rounded-lg text-white hover:opacity-90 transition-opacity text-sm"
+                                            className="px-4 py-2 bg-blue-600 text-white border border-blue-600 rounded-lg font-bold hover:bg-blue-700 transition-colors text-sm shadow-sm"
                                         >
                                             Review
                                         </Link>
@@ -162,13 +162,13 @@ export default function RecruiterApplicationsPage() {
                                 </div>
 
                                 {application.coverLetter && (
-                                    <div className="mt-4 p-4 bg-white/5 rounded-lg border border-white/10">
-                                        <p className="text-xs text-gray-400 mb-2">Cover Letter</p>
-                                        <p className="text-sm text-gray-300 line-clamp-3">{application.coverLetter}</p>
+                                    <div className="mt-4 p-4 bg-gray-50 rounded-lg border border-gray-100">
+                                        <p className="text-xs text-gray-500 mb-2">Cover Letter</p>
+                                        <p className="text-sm text-gray-600 line-clamp-3">{application.coverLetter}</p>
                                     </div>
                                 )}
 
-                                <div className="mt-4 text-sm text-gray-400">
+                                <div className="mt-4 text-sm text-gray-500">
                                     Applied on {new Date(application.createdAt).toLocaleDateString('en-US', {
                                         year: 'numeric',
                                         month: 'long',

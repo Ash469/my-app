@@ -65,10 +65,10 @@ export default function RecruiterDashboard() {
         return (
             <DashboardLayout>
                 <div className="animate-pulse space-y-6">
-                    <div className="h-8 bg-white/10 rounded w-1/3"></div>
+                    <div className="h-8 bg-slate-100 rounded w-1/3"></div>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                         {[...Array(4)].map((_, i) => (
-                            <div key={i} className="h-32 bg-white/10 rounded-2xl"></div>
+                            <div key={i} className="h-32 bg-slate-100 rounded-xl"></div>
                         ))}
                     </div>
                 </div>
@@ -81,10 +81,10 @@ export default function RecruiterDashboard() {
             <div className="space-y-8">
                 {/* Welcome Header */}
                 <div className="animate-fade-in">
-                    <h1 className="text-3xl font-bold text-white mb-2">
+                    <h1 className="text-3xl font-bold text-foreground mb-2">
                         Welcome back, {user?.firstName}! 👋
                     </h1>
-                    <p className="text-gray-400">Here's an overview of your recruitment activities</p>
+                    <p className="text-gray-500">Here's an overview of your recruitment activities</p>
                 </div>
 
                 {/* Stats Grid */}
@@ -92,100 +92,100 @@ export default function RecruiterDashboard() {
                     <StatsCard
                         title="Total Jobs"
                         value={stats.totalJobs}
-                        icon="💼"
-                        gradient="gradient-primary"
+                        // icon="💼"
+                        color="primary"
                     />
                     <StatsCard
                         title="Active Jobs"
                         value={stats.activeJobs}
-                        icon="✅"
-                        gradient="bg-gradient-to-br from-green-500 to-emerald-500"
+                        // icon="✅"
+                        color="success"
                     />
                     <StatsCard
                         title="Total Applications"
                         value={stats.totalApplications}
-                        icon="📝"
-                        gradient="bg-gradient-to-br from-blue-500 to-cyan-500"
+                        // icon="📝"
+                        color="warning"
                     />
                     <StatsCard
                         title="Pending Review"
                         value={stats.pendingReview}
-                        icon="⏳"
-                        gradient="bg-gradient-to-br from-yellow-500 to-orange-500"
+                        // icon="⏳"
+                        color="error"
                     />
                 </div>
 
                 {/* Quick Actions */}
-                <div className="glass p-6 rounded-2xl animate-fade-in">
-                    <h2 className="text-xl font-bold text-white mb-4">Quick Actions</h2>
+                <div className="bg-white border border-gray-100 p-6 rounded-2xl animate-fade-in shadow-sm">
+                    <h2 className="text-xl font-bold text-foreground mb-4">Quick Actions</h2>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                         <button
                             onClick={() => router.push('/dashboard/recruiter/jobs/new')}
-                            className="glass p-4 rounded-xl hover:bg-white/20 transition-all text-left group"
+                            className="bg-slate-50 border border-slate-200 p-4 rounded-xl hover:bg-slate-100 transition-all text-left group"
                         >
-                            <div className="text-2xl mb-2">➕</div>
-                            <h3 className="font-semibold text-white mb-1 group-hover:text-purple-300 transition-colors">
+                            <div className="text-2xl mb-2 text-blue-600">➕</div>
+                            <h3 className="font-bold text-slate-800 mb-1 group-hover:text-blue-600 transition-colors">
                                 Post New Job
                             </h3>
-                            <p className="text-sm text-gray-400">Create a new job listing</p>
+                            <p className="text-sm text-slate-500">Create a new job listing</p>
                         </button>
                         <button
                             onClick={() => router.push('/dashboard/recruiter/jobs')}
-                            className="glass p-4 rounded-xl hover:bg-white/20 transition-all text-left group"
+                            className="bg-slate-50 border border-slate-200 p-4 rounded-xl hover:bg-slate-100 transition-all text-left group"
                         >
-                            <div className="text-2xl mb-2">💼</div>
-                            <h3 className="font-semibold text-white mb-1 group-hover:text-purple-300 transition-colors">
+                            <div className="text-2xl mb-2 text-blue-600">💼</div>
+                            <h3 className="font-bold text-slate-800 mb-1 group-hover:text-blue-600 transition-colors">
                                 Manage Jobs
                             </h3>
-                            <p className="text-sm text-gray-400">View and edit your postings</p>
+                            <p className="text-sm text-slate-500">View and edit your postings</p>
                         </button>
                         <button
                             onClick={() => router.push('/dashboard/recruiter/applications')}
-                            className="glass p-4 rounded-xl hover:bg-white/20 transition-all text-left group"
+                            className="bg-slate-50 border border-slate-200 p-4 rounded-xl hover:bg-slate-100 transition-all text-left group"
                         >
-                            <div className="text-2xl mb-2">📋</div>
-                            <h3 className="font-semibold text-white mb-1 group-hover:text-purple-300 transition-colors">
+                            <div className="text-2xl mb-2 text-blue-600">📋</div>
+                            <h3 className="font-bold text-slate-800 mb-1 group-hover:text-blue-600 transition-colors">
                                 Review Applications
                             </h3>
-                            <p className="text-sm text-gray-400">Check candidate applications</p>
+                            <p className="text-sm text-slate-500">Check candidate applications</p>
                         </button>
                     </div>
                 </div>
 
                 {/* Performance Overview */}
-                <div className="glass p-6 rounded-2xl animate-fade-in">
-                    <h2 className="text-xl font-bold text-white mb-4">Performance Overview</h2>
+                <div className="bg-white border border-gray-100 p-6 rounded-2xl animate-fade-in shadow-sm">
+                    <h2 className="text-xl font-bold text-foreground mb-4">Performance Overview</h2>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                         <div className="text-center p-4">
-                            <p className="text-3xl font-bold text-white mb-1">
+                            <p className="text-3xl font-bold text-slate-800 mb-1">
                                 {stats.totalApplications > 0 ? Math.round((stats.totalApplications / stats.totalJobs) * 10) / 10 : 0}
                             </p>
-                            <p className="text-sm text-gray-400">Avg. Applications per Job</p>
+                            <p className="text-sm text-slate-500">Avg. Applications per Job</p>
                         </div>
                         <div className="text-center p-4">
-                            <p className="text-3xl font-bold text-white mb-1">
+                            <p className="text-3xl font-bold text-slate-800 mb-1">
                                 {stats.totalApplications > 0 ? Math.round((stats.pendingReview / stats.totalApplications) * 100) : 0}%
                             </p>
-                            <p className="text-sm text-gray-400">Pending Review Rate</p>
+                            <p className="text-sm text-slate-500">Pending Review Rate</p>
                         </div>
                         <div className="text-center p-4">
-                            <p className="text-3xl font-bold text-white mb-1">
+                            <p className="text-3xl font-bold text-slate-800 mb-1">
                                 {stats.totalJobs > 0 ? Math.round((stats.activeJobs / stats.totalJobs) * 100) : 0}%
                             </p>
-                            <p className="text-sm text-gray-400">Active Jobs Rate</p>
+                            <p className="text-sm text-slate-500">Active Jobs Rate</p>
                         </div>
                     </div>
                 </div>
 
                 {/* Getting Started */}
                 {stats.totalJobs === 0 && (
-                    <div className="glass p-8 rounded-2xl text-center animate-fade-in">
+                    <div className="bg-white border border-gray-100 p-8 rounded-2xl text-center animate-fade-in shadow-sm">
                         <div className="text-6xl mb-4">🚀</div>
-                        <h3 className="text-2xl font-bold text-white mb-2">Get Started with Recruiting</h3>
-                        <p className="text-gray-400 mb-6">Post your first job to start receiving applications</p>
+                        <h3 className="text-2xl font-bold text-foreground mb-2">Get Started with Recruiting</h3>
+                        <p className="text-gray-500 mb-6">Post your first job to start receiving applications</p>
                         <button
                             onClick={() => router.push('/dashboard/recruiter/jobs/new')}
-                            className="gradient-primary text-white px-8 py-4 rounded-lg text-lg font-semibold hover:opacity-90 transition-opacity"
+                            className="bg-blue-600 text-white px-8 py-4 rounded-lg text-lg font-bold hover:bg-blue-700 transition-colors shadow-sm"
                         >
                             Post Your First Job
                         </button>

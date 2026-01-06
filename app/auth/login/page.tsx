@@ -39,10 +39,10 @@ export default function LoginPage() {
     };
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-violet-900 flex items-center justify-center p-4">
-            <div className="glass max-w-md w-full p-8 rounded-2xl animate-fade-in">
-                <h1 className="text-3xl font-bold text-white mb-2">Welcome Back</h1>
-                <p className="text-gray-300 mb-6">Login to your account</p>
+        <div className="min-h-screen bg-background flex items-center justify-center p-4">
+            <div className="bg-white border border-gray-100 max-w-md w-full p-8 rounded-2xl animate-fade-in shadow-sm">
+                <h1 className="text-3xl font-bold text-foreground mb-2">Welcome Back</h1>
+                <p className="text-gray-500 mb-6">Login to your account</p>
 
                 {error && (
                     <div className="bg-red-500/20 border border-red-500 text-red-200 px-4 py-3 rounded-lg mb-4">
@@ -52,7 +52,7 @@ export default function LoginPage() {
 
                 <form onSubmit={handleSubmit} className="space-y-4">
                     <div>
-                        <label className="block text-sm font-medium text-gray-300 mb-1">
+                        <label className="block text-sm font-medium text-gray-700 mb-1">
                             Email
                         </label>
                         <input
@@ -60,13 +60,13 @@ export default function LoginPage() {
                             required
                             value={formData.email}
                             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                            className="w-full px-4 py-2 bg-white/10 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-primary"
+                            className="w-full px-4 py-2 bg-gray-50 border border-gray-100 rounded-lg text-foreground placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-100"
                             placeholder="your@email.com"
                         />
                     </div>
 
                     <div>
-                        <label className="block text-sm font-medium text-gray-300 mb-1">
+                        <label className="block text-sm font-medium text-gray-700 mb-1">
                             Password
                         </label>
                         <input
@@ -74,7 +74,7 @@ export default function LoginPage() {
                             required
                             value={formData.password}
                             onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                            className="w-full px-4 py-2 bg-white/10 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-primary"
+                            className="w-full px-4 py-2 bg-gray-50 border border-gray-100 rounded-lg text-foreground placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-100"
                             placeholder="••••••••"
                         />
                     </div>
@@ -82,15 +82,15 @@ export default function LoginPage() {
                     <button
                         type="submit"
                         disabled={isLoading}
-                        className="w-full gradient-primary text-white py-3 rounded-lg font-semibold hover:opacity-90 transition-opacity disabled:opacity-50"
+                        className="w-full bg-gray-100 text-gray-700 py-3 rounded-lg font-semibold hover:bg-gray-200 transition-colors disabled:opacity-50"
                     >
                         {isLoading ? 'Logging in...' : 'Login'}
                     </button>
                 </form>
 
-                <p className="text-center text-gray-300 mt-6">
+                <p className="text-center text-gray-500 mt-6">
                     Don't have an account?{' '}
-                    <Link href="/auth/register" className="text-primary hover:text-primary-dark">
+                    <Link href="/auth/register" className="text-primary hover:underline font-semibold">
                         Sign up
                     </Link>
                 </p>

@@ -25,18 +25,18 @@ export default function ApplicationCard({ application, showJobDetails = true }: 
     });
 
     return (
-        <div className="glass p-6 rounded-2xl hover:scale-[1.01] transition-all duration-300 animate-fade-in">
+        <div className="bg-white border border-slate-200 p-6 rounded-xl hover:shadow-md transition-all duration-300 animate-fade-in shadow-sm">
             <div className="flex items-start justify-between mb-4">
                 <div className="flex-1">
                     {showJobDetails && (
                         <>
                             <Link href={`/jobs/${application.jobId._id}`}>
-                                <h3 className="text-lg font-bold text-white mb-1 hover:text-purple-300 transition-colors">
+                                <h3 className="text-lg font-bold text-foreground mb-1 hover:text-primary transition-colors">
                                     {application.jobId.title}
                                 </h3>
                             </Link>
-                            <p className="text-gray-300 text-sm mb-1">{application.jobId.company}</p>
-                            <p className="text-gray-400 text-sm flex items-center space-x-1">
+                            <p className="text-gray-600 text-sm mb-1">{application.jobId.company}</p>
+                            <p className="text-gray-500 text-sm flex items-center space-x-1">
                                 <span>📍</span>
                                 <span>{application.jobId.location}</span>
                             </p>
@@ -47,19 +47,19 @@ export default function ApplicationCard({ application, showJobDetails = true }: 
             </div>
 
             <div className="flex items-center justify-between text-sm">
-                <span className="text-gray-400">Applied on {formattedDate}</span>
+                <span className="text-gray-500">Applied on {formattedDate}</span>
                 <Link
                     href={`/dashboard/employee/applications/${application._id}`}
-                    className="text-purple-400 hover:text-purple-300 transition-colors font-medium"
+                    className="text-blue-600 hover:text-blue-700 hover:underline transition-colors font-bold"
                 >
                     View Details →
                 </Link>
             </div>
 
             {application.feedback && (
-                <div className="mt-4 p-3 bg-white/5 rounded-lg border border-white/10">
-                    <p className="text-xs text-gray-400 mb-1">Feedback</p>
-                    <p className="text-sm text-gray-300">{application.feedback}</p>
+                <div className="mt-4 p-3 bg-gray-50 rounded-lg border border-gray-100">
+                    <p className="text-xs text-gray-500 mb-1">Feedback</p>
+                    <p className="text-sm text-gray-600">{application.feedback}</p>
                 </div>
             )}
         </div>

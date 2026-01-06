@@ -83,12 +83,12 @@ export default function RecruiterJobsPage() {
                 {/* Header */}
                 <div className="flex items-center justify-between animate-fade-in">
                     <div>
-                        <h1 className="text-3xl font-bold text-white mb-2">My Job Postings</h1>
-                        <p className="text-gray-400">Manage your job listings and track applications</p>
+                        <h1 className="text-3xl font-bold text-foreground mb-2">My Job Postings</h1>
+                        <p className="text-gray-500">Manage your job listings and track applications</p>
                     </div>
                     <button
                         onClick={() => router.push('/dashboard/recruiter/jobs/new')}
-                        className="gradient-primary text-white px-6 py-3 rounded-lg font-semibold hover:opacity-90 transition-opacity"
+                        className="bg-blue-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-blue-700 transition-colors shadow-sm"
                     >
                         + Post New Job
                     </button>
@@ -98,21 +98,21 @@ export default function RecruiterJobsPage() {
                 {loading ? (
                     <div className="space-y-4">
                         {[...Array(3)].map((_, i) => (
-                            <div key={i} className="glass p-6 rounded-2xl h-40 animate-pulse">
-                                <div className="h-6 bg-white/10 rounded mb-4"></div>
-                                <div className="h-4 bg-white/10 rounded mb-2"></div>
-                                <div className="h-4 bg-white/10 rounded w-2/3"></div>
+                            <div key={i} className="bg-white border border-gray-100 p-6 rounded-2xl h-40 animate-pulse shadow-sm">
+                                <div className="h-6 bg-gray-100 rounded mb-4"></div>
+                                <div className="h-4 bg-gray-100 rounded mb-2"></div>
+                                <div className="h-4 bg-gray-100 rounded w-2/3"></div>
                             </div>
                         ))}
                     </div>
                 ) : jobs.length === 0 ? (
-                    <div className="glass p-12 rounded-2xl text-center">
+                    <div className="bg-white border border-gray-100 p-12 rounded-2xl text-center shadow-sm">
                         <div className="text-6xl mb-4">💼</div>
-                        <h3 className="text-2xl font-bold text-white mb-2">No jobs posted yet</h3>
-                        <p className="text-gray-400 mb-6">Create your first job posting to start receiving applications</p>
+                        <h3 className="text-2xl font-bold text-foreground mb-2">No jobs posted yet</h3>
+                        <p className="text-gray-500 mb-6">Create your first job posting to start receiving applications</p>
                         <button
                             onClick={() => router.push('/dashboard/recruiter/jobs/new')}
-                            className="gradient-primary text-white px-6 py-3 rounded-lg font-semibold hover:opacity-90 transition-opacity"
+                            className="bg-blue-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-blue-700 transition-colors shadow-sm"
                         >
                             Post Your First Job
                         </button>
@@ -120,20 +120,20 @@ export default function RecruiterJobsPage() {
                 ) : (
                     <div className="space-y-4">
                         {jobs.map((job) => (
-                            <div key={job._id} className="glass p-6 rounded-2xl hover:scale-[1.01] transition-all animate-fade-in">
+                            <div key={job._id} className="bg-white border border-slate-200 p-6 rounded-xl hover:shadow-md transition-all animate-fade-in shadow-sm">
                                 <div className="flex items-start justify-between">
                                     <div className="flex-1">
                                         <div className="flex items-center space-x-3 mb-2">
-                                            <h3 className="text-xl font-bold text-white">{job.title}</h3>
-                                            <span className={`px-3 py-1 text-xs rounded-full font-medium ${job.status === 'ACTIVE'
-                                                ? 'bg-green-500/20 text-green-400 border border-green-500/30'
-                                                : 'bg-gray-500/20 text-gray-400 border border-gray-500/30'
+                                            <h3 className="text-xl font-bold text-slate-900">{job.title}</h3>
+                                            <span className={`px-3 py-1 text-xs rounded-full font-bold border ${job.status === 'ACTIVE'
+                                                ? 'bg-emerald-50 text-emerald-700 border-emerald-200'
+                                                : 'bg-slate-100 text-slate-600 border-slate-200'
                                                 }`}>
                                                 {job.status}
                                             </span>
                                         </div>
-                                        <p className="text-gray-300 mb-2">{job.company}</p>
-                                        <div className="flex flex-wrap items-center gap-4 text-sm text-gray-400">
+                                        <p className="text-gray-600 mb-2">{job.company}</p>
+                                        <div className="flex flex-wrap items-center gap-4 text-sm text-gray-500">
                                             <span className="flex items-center space-x-1">
                                                 <span>📍</span>
                                                 <span>{job.location}</span>
@@ -155,19 +155,19 @@ export default function RecruiterJobsPage() {
                                     <div className="flex items-center space-x-2 ml-4">
                                         <Link
                                             href={`/jobs/${job._id}`}
-                                            className="px-4 py-2 glass rounded-lg text-white hover:bg-white/20 transition-colors text-sm"
+                                            className="px-4 py-2 bg-slate-100 border border-slate-200 rounded-lg text-slate-700 hover:bg-slate-200 transition-colors text-sm font-bold"
                                         >
                                             View
                                         </Link>
                                         <Link
                                             href={`/dashboard/recruiter/jobs/${job._id}/edit`}
-                                            className="px-4 py-2 glass rounded-lg text-white hover:bg-white/20 transition-colors text-sm"
+                                            className="px-4 py-2 bg-slate-100 border border-slate-200 rounded-lg text-slate-700 hover:bg-slate-200 transition-colors text-sm font-bold"
                                         >
                                             Edit
                                         </Link>
                                         <button
                                             onClick={() => handleDeleteJob(job._id)}
-                                            className="px-4 py-2 bg-red-500/20 border border-red-500/30 rounded-lg text-red-400 hover:bg-red-500/30 transition-colors text-sm"
+                                            className="px-4 py-2 bg-rose-50 text-rose-600 border border-rose-100 rounded-lg hover:bg-rose-100 transition-colors text-sm font-bold"
                                         >
                                             Delete
                                         </button>

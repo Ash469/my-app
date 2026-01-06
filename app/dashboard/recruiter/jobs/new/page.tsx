@@ -85,18 +85,18 @@ export default function NewJobPage() {
             <div className="max-w-3xl">
                 {/* Header */}
                 <div className="mb-8 animate-fade-in">
-                    <h1 className="text-3xl font-bold text-white mb-2">Post New Job</h1>
-                    <p className="text-gray-400">Create a new job listing to attract qualified candidates</p>
+                    <h1 className="text-3xl font-bold text-foreground mb-2">Post New Job</h1>
+                    <p className="text-gray-500">Create a new job listing to attract qualified candidates</p>
                 </div>
 
                 {/* Form */}
                 <form onSubmit={handleSubmit} className="space-y-6">
                     {/* Basic Information */}
-                    <div className="glass p-6 rounded-2xl space-y-4 animate-fade-in">
-                        <h2 className="text-xl font-bold text-white mb-4">Basic Information</h2>
+                    <div className="bg-white border border-gray-100 p-6 rounded-2xl space-y-4 animate-fade-in shadow-sm">
+                        <h2 className="text-xl font-bold text-foreground mb-4">Basic Information</h2>
 
                         <div>
-                            <label className="block text-sm font-medium text-gray-300 mb-2">
+                            <label className="block text-sm font-medium text-gray-700 mb-2">
                                 Job Title *
                             </label>
                             <input
@@ -104,13 +104,13 @@ export default function NewJobPage() {
                                 required
                                 value={formData.title}
                                 onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                                className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                                className="w-full px-4 py-3 bg-gray-50 border border-gray-100 rounded-lg text-foreground placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-100"
                                 placeholder="e.g. Senior Software Engineer"
                             />
                         </div>
 
                         <div>
-                            <label className="block text-sm font-medium text-gray-300 mb-2">
+                            <label className="block text-sm font-medium text-gray-700 mb-2">
                                 Company Name *
                             </label>
                             <input
@@ -118,13 +118,13 @@ export default function NewJobPage() {
                                 required
                                 value={formData.company}
                                 onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                                className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                                className="w-full px-4 py-3 bg-gray-50 border border-gray-100 rounded-lg text-foreground placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-100"
                                 placeholder="Your company name"
                             />
                         </div>
 
                         <div>
-                            <label className="block text-sm font-medium text-gray-300 mb-2">
+                            <label className="block text-sm font-medium text-gray-700 mb-2">
                                 Location *
                             </label>
                             <input
@@ -132,20 +132,20 @@ export default function NewJobPage() {
                                 required
                                 value={formData.location}
                                 onChange={(e) => setFormData({ ...formData, location: e.target.value })}
-                                className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                                className="w-full px-4 py-3 bg-gray-50 border border-gray-100 rounded-lg text-foreground placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-100"
                                 placeholder="e.g. San Francisco, CA or Remote"
                             />
                         </div>
 
                         <div>
-                            <label className="block text-sm font-medium text-gray-300 mb-2">
+                            <label className="block text-sm font-medium text-gray-700 mb-2">
                                 Employment Type *
                             </label>
                             <select
                                 required
                                 value={formData.employmentType}
                                 onChange={(e) => setFormData({ ...formData, employmentType: e.target.value })}
-                                className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
+                                className="w-full px-4 py-3 bg-gray-50 border border-gray-100 rounded-lg text-foreground focus:outline-none focus:ring-2 focus:ring-gray-100"
                             >
                                 <option value="FULL_TIME">Full Time</option>
                                 <option value="PART_TIME">Part Time</option>
@@ -156,42 +156,42 @@ export default function NewJobPage() {
                     </div>
 
                     {/* Salary Range */}
-                    <div className="glass p-6 rounded-2xl space-y-4 animate-fade-in">
-                        <h2 className="text-xl font-bold text-white mb-4">Salary Range (Optional)</h2>
+                    <div className="bg-white border border-gray-100 p-6 rounded-2xl space-y-4 animate-fade-in shadow-sm">
+                        <h2 className="text-xl font-bold text-foreground mb-4">Salary Range (Optional)</h2>
 
                         <div className="grid grid-cols-3 gap-4">
                             <div>
-                                <label className="block text-sm font-medium text-gray-300 mb-2">
+                                <label className="block text-sm font-medium text-gray-700 mb-2">
                                     Minimum
                                 </label>
                                 <input
                                     type="number"
                                     value={formData.salaryMin}
                                     onChange={(e) => setFormData({ ...formData, salaryMin: e.target.value })}
-                                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                                    className="w-full px-4 py-3 bg-gray-50 border border-gray-100 rounded-lg text-foreground placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-100"
                                     placeholder="50000"
                                 />
                             </div>
                             <div>
-                                <label className="block text-sm font-medium text-gray-300 mb-2">
+                                <label className="block text-sm font-medium text-gray-700 mb-2">
                                     Maximum
                                 </label>
                                 <input
                                     type="number"
                                     value={formData.salaryMax}
                                     onChange={(e) => setFormData({ ...formData, salaryMax: e.target.value })}
-                                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                                    className="w-full px-4 py-3 bg-gray-50 border border-gray-100 rounded-lg text-foreground placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-100"
                                     placeholder="100000"
                                 />
                             </div>
                             <div>
-                                <label className="block text-sm font-medium text-gray-300 mb-2">
+                                <label className="block text-sm font-medium text-gray-700 mb-2">
                                     Currency
                                 </label>
                                 <select
                                     value={formData.currency}
                                     onChange={(e) => setFormData({ ...formData, currency: e.target.value })}
-                                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
+                                    className="w-full px-4 py-3 bg-gray-50 border border-gray-100 rounded-lg text-foreground focus:outline-none focus:ring-2 focus:ring-gray-100"
                                 >
                                     <option value="USD">USD</option>
                                     <option value="EUR">EUR</option>
@@ -203,26 +203,26 @@ export default function NewJobPage() {
                     </div>
 
                     {/* Description */}
-                    <div className="glass p-6 rounded-2xl space-y-4 animate-fade-in">
-                        <h2 className="text-xl font-bold text-white mb-4">Job Description *</h2>
+                    <div className="bg-white border border-gray-100 p-6 rounded-2xl space-y-4 animate-fade-in shadow-sm">
+                        <h2 className="text-xl font-bold text-foreground mb-4">Job Description *</h2>
                         <textarea
                             required
                             value={formData.description}
                             onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                             rows={8}
-                            className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                            className="w-full px-4 py-3 bg-gray-50 border border-gray-100 rounded-lg text-foreground placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-100"
                             placeholder="Describe the role, responsibilities, and what makes this opportunity great..."
                         />
                     </div>
 
                     {/* Requirements */}
-                    <div className="glass p-6 rounded-2xl space-y-4 animate-fade-in">
+                    <div className="bg-white border border-gray-100 p-6 rounded-2xl space-y-4 animate-fade-in shadow-sm">
                         <div className="flex items-center justify-between mb-4">
-                            <h2 className="text-xl font-bold text-white">Requirements</h2>
+                            <h2 className="text-xl font-bold text-foreground">Requirements</h2>
                             <button
                                 type="button"
                                 onClick={addRequirement}
-                                className="px-4 py-2 glass rounded-lg text-white hover:bg-white/20 transition-colors text-sm"
+                                className="px-4 py-2 bg-gray-100 border border-gray-100 rounded-lg text-gray-700 hover:bg-gray-200 transition-colors text-sm font-semibold"
                             >
                                 + Add Requirement
                             </button>
@@ -234,14 +234,14 @@ export default function NewJobPage() {
                                     type="text"
                                     value={req}
                                     onChange={(e) => updateRequirement(index, e.target.value)}
-                                    className="flex-1 px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                                    className="flex-1 px-4 py-3 bg-gray-50 border border-gray-100 rounded-lg text-foreground placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-100"
                                     placeholder="e.g. 5+ years of experience in React"
                                 />
                                 {formData.requirements.length > 1 && (
                                     <button
                                         type="button"
                                         onClick={() => removeRequirement(index)}
-                                        className="px-4 py-3 bg-red-500/20 border border-red-500/30 rounded-lg text-red-400 hover:bg-red-500/30 transition-colors"
+                                        className="px-4 py-3 bg-red-50 text-red-600 border border-red-100 rounded-lg hover:bg-red-100 transition-colors font-semibold"
                                     >
                                         Remove
                                     </button>
@@ -255,14 +255,14 @@ export default function NewJobPage() {
                         <button
                             type="submit"
                             disabled={loading}
-                            className="flex-1 gradient-primary text-white px-8 py-4 rounded-lg text-lg font-semibold hover:opacity-90 transition-opacity disabled:opacity-50"
+                            className="flex-1 bg-primary/20 text-primary border border-primary/20 px-8 py-4 rounded-lg text-lg font-bold hover:bg-primary/30 transition-colors disabled:opacity-50"
                         >
                             {loading ? 'Creating...' : 'Post Job'}
                         </button>
                         <button
                             type="button"
                             onClick={() => router.back()}
-                            className="px-8 py-4 glass rounded-lg text-white hover:bg-white/20 transition-colors"
+                            className="px-8 py-4 bg-gray-100 text-gray-700 border border-gray-100 rounded-lg hover:bg-gray-200 transition-colors"
                         >
                             Cancel
                         </button>

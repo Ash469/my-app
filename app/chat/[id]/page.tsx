@@ -180,11 +180,11 @@ export default function ChatPage() {
 
     if (loading || authLoading) {
         return (
-            <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-violet-900 flex items-center justify-center">
-                <div className="glass p-8 rounded-2xl">
-                    <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-white mx-auto mb-4"></div>
-                    <p className="text-xl font-semibold text-white text-center">Getting ready with your chats...</p>
-                    <p className="text-sm text-gray-400 mt-2 text-center">Please wait</p>
+            <div className="min-h-screen bg-background flex items-center justify-center">
+                <div className="bg-white border border-gray-100 p-8 rounded-2xl shadow-sm">
+                    <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-primary mx-auto mb-4"></div>
+                    <p className="text-xl font-semibold text-foreground text-center">Getting ready with your chats...</p>
+                    <p className="text-sm text-gray-500 mt-2 text-center">Please wait</p>
                 </div>
             </div>
         );
@@ -192,34 +192,34 @@ export default function ChatPage() {
 
     if (!chat) {
         return (
-            <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-violet-900 flex items-center justify-center">
-                <div className="glass p-12 rounded-2xl text-center">
+            <div className="min-h-screen bg-background flex items-center justify-center">
+                <div className="bg-white border border-gray-100 p-12 rounded-2xl text-center shadow-sm">
                     <div className="text-6xl mb-4">❌</div>
-                    <h2 className="text-2xl font-bold text-white mb-2">Chat not found</h2>
-                    <p className="text-gray-400">This chat may have been removed or you don't have access</p>
+                    <h2 className="text-2xl font-bold text-foreground mb-2">Chat not found</h2>
+                    <p className="text-gray-500">This chat may have been removed or you don't have access</p>
                 </div>
             </div>
         );
     }
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-violet-900">
+        <div className="min-h-screen bg-background">
             {/* Header */}
-            <header className="glass-dark border-b border-white/10 sticky top-0 z-50">
+            <header className="border-b border-gray-100 bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
                 <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between items-center h-16">
                         <div>
-                            <h1 className="text-xl font-bold text-white">
+                            <h1 className="text-xl font-bold text-foreground">
                                 {isRecruiter ? `Chat with ${chat.refereeId.name}` : 'Recruiter Chat'}
                             </h1>
-                            <p className="text-sm text-gray-400">
+                            <p className="text-sm text-gray-500">
                                 Re: {chat.applicationId.employeeId.firstName} {chat.applicationId.employeeId.lastName} • {chat.applicationId.jobId.title}
                             </p>
                         </div>
                         {isRecruiter && (
                             <button
                                 onClick={() => router.back()}
-                                className="text-gray-300 hover:text-white transition-colors"
+                                className="text-gray-600 hover:text-primary transition-colors font-medium"
                             >
                                 ← Back
                             </button>
@@ -230,11 +230,11 @@ export default function ChatPage() {
 
             {/* Chat Container */}
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-                <div className="glass rounded-2xl overflow-hidden flex flex-col" style={{ height: 'calc(100vh - 200px)' }}>
+                <div className="bg-white border border-gray-100 rounded-2xl overflow-hidden flex flex-col shadow-sm" style={{ height: 'calc(100vh - 200px)' }}>
                     {/* Messages */}
                     <div className="flex-1 overflow-y-auto p-6 space-y-4">
                         {messages.length === 0 ? (
-                            <div className="text-center text-gray-400 py-12">
+                            <div className="text-center text-gray-500 py-12">
                                 <p className="text-lg mb-2">💬</p>
                                 <p>No messages yet. Start the conversation!</p>
                             </div>
@@ -250,13 +250,13 @@ export default function ChatPage() {
                                         className={`flex ${isOwnMessage ? 'justify-end' : 'justify-start'}`}
                                     >
                                         <div
-                                            className={`max-w-[70%] rounded-2xl px-4 py-3 ${isOwnMessage
-                                                ? 'gradient-primary text-white'
-                                                : 'bg-white/10 text-white'
+                                            className={`max-w-[70%] rounded-2xl px-4 py-3 shadow-sm ${isOwnMessage
+                                                ? 'bg-[#3b82f6] text-white border-transparent'
+                                                : 'bg-[#f1f5f9] text-[#1e293b] border border-slate-100'
                                                 }`}
                                         >
-                                            <p className="text-sm mb-1">{message.content}</p>
-                                            <p className="text-xs opacity-70">
+                                            <p className="text-sm mb-1 font-medium">{message.content}</p>
+                                            <p className={`text-xs ${isOwnMessage ? 'text-blue-100' : 'text-slate-400'}`}>
                                                 {new Date(message.createdAt).toLocaleTimeString('en-US', {
                                                     hour: '2-digit',
                                                     minute: '2-digit',
@@ -271,20 +271,20 @@ export default function ChatPage() {
                     </div>
 
                     {/* Message Input */}
-                    <form onSubmit={handleSendMessage} className="border-t border-white/10 p-4">
+                    <form onSubmit={handleSendMessage} className="border-t border-gray-100 p-4 bg-gray-50/50">
                         <div className="flex space-x-2">
                             <input
                                 type="text"
                                 value={newMessage}
                                 onChange={(e) => setNewMessage(e.target.value)}
                                 placeholder="Type your message..."
-                                className="flex-1 px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                                className="flex-1 px-4 py-3 bg-white border border-slate-200 rounded-lg text-[#1e293b] placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#3b82f6] focus:border-transparent font-medium"
                                 disabled={sending}
                             />
                             <button
                                 type="submit"
                                 disabled={sending || !newMessage.trim()}
-                                className="px-6 py-3 gradient-primary rounded-lg text-white font-semibold hover:opacity-90 transition-opacity disabled:opacity-50"
+                                className="px-6 py-3 bg-[#2563eb] text-white rounded-lg font-bold hover:bg-[#1d4ed8] transition-all disabled:opacity-50 shadow-md hover:shadow-lg transform hover:-translate-y-0.5 active:translate-y-0"
                             >
                                 {sending ? 'Sending...' : 'Send'}
                             </button>
