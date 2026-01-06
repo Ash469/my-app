@@ -108,25 +108,25 @@ export default function EmployeeDashboard() {
                     <StatsCard
                         title="Total Applications"
                         value={stats.totalApplications}
-                        icon="📝"
+                        // icon="📝"
                         color="primary"
                     />
                     <StatsCard
                         title="Pending Review"
                         value={stats.pending}
-                        icon="⏳"
+                        // icon="⏳"
                         color="warning"
                     />
                     <StatsCard
                         title="Under Review"
                         value={stats.underReview}
-                        icon="🔍"
+                        // icon="🔍"
                         color="primary"
                     />
                     <StatsCard
                         title="Hired"
                         value={stats.hired}
-                        icon="🎉"
+                        // icon="🎉"
                         color="success"
                     />
                 </div>
