@@ -44,6 +44,15 @@ export async function GET(
         }
 
         if (!chat) {
+            console.error(`Chat lookup failed for chatId: ${chatId}. Is Referee: ${!!token}`);
+            if (token) {
+                const tokenHash = hashToken(token);
+                console.error(`Token provided. Hash: ${tokenHash}`);
+                const directMatch = await Chat.findOne({ _id: chatId, refereeToken: token });
+                console.error(`Direct token match found: ${!!directMatch}`);
+                const hashMatch = await Chat.findOne({ _id: chatId, tokenHash });
+                console.error(`Hash token match found: ${!!hashMatch}`);
+            }
             return NextResponse.json({ error: 'Chat not found or access denied' }, { status: 404 });
         }
 

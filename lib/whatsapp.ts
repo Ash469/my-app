@@ -12,6 +12,12 @@ function getTwilioClient() {
     if (!twilioClient && TWILIO_ACCOUNT_SID && TWILIO_AUTH_TOKEN) {
         twilioClient = twilio(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN);
     }
+
+    // Validate number format
+    if (TWILIO_WHATSAPP_NUMBER && !TWILIO_WHATSAPP_NUMBER.startsWith('whatsapp:')) {
+        console.warn(`WARNING: TWILIO_WHATSAPP_NUMBER (${TWILIO_WHATSAPP_NUMBER}) should start with 'whatsapp:'. Auto-fixing for this session, but please update your .env file.`);
+    }
+
     return twilioClient;
 }
 
@@ -35,13 +41,21 @@ export async function sendRefereeInvitationWhatsApp(
         ? refereePhone
         : `whatsapp:${refereePhone}`;
 
+    // Ensure chatUrl has a protocol
+    let formattedChatUrl = chatUrl;
+    if (!formattedChatUrl.startsWith('http://') && !formattedChatUrl.startsWith('https://')) {
+        formattedChatUrl = `https://${formattedChatUrl}`;
+    }
+
     const message = `Hello ${refereeName},
 
 A recruiter from *${companyName}* has requested to contact you as a reference for a candidate who applied for the position of *${jobTitle}*.
 
 You can securely communicate with the recruiter through our encrypted chat system. No account creation is required.
 
-🔗 Access Secure Chat: ${chatUrl}
+
+🔗 Access Secure Chat:
+${formattedChatUrl}
 
 ⚠️ *Important:* This link is unique and secure. Do not share it with anyone else.
 
@@ -80,11 +94,19 @@ export async function sendNewMessageNotificationWhatsApp(
         ? recipientPhone
         : `whatsapp:${recipientPhone}`;
 
+    // Ensure chatUrl has a protocol (http:// or https://) for WhatsApp clickability
+    let formattedChatUrl = chatUrl;
+    if (!formattedChatUrl.startsWith('http://') && !formattedChatUrl.startsWith('https://')) {
+        formattedChatUrl = `https://${formattedChatUrl}`;
+    }
+
     const message = `Hello ${recipientName},
 
 💬 You have received a new message in your chat.
 
-🔗 View Message: ${chatUrl}
+
+🔗 View Message:
+${formattedChatUrl}
 
 _This is an automated notification from the Recruitment Verification Platform._`;
 

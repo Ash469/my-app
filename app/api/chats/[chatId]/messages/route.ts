@@ -9,6 +9,7 @@ import { SenderType } from '@/lib/constants';
 import { z } from 'zod';
 import { v4 as uuidv4 } from 'uuid';
 import { sendNewMessageNotification } from '@/lib/email';
+import { sendNewMessageNotificationWhatsApp } from '@/lib/whatsapp';
 
 const sendMessageSchema = z.object({
     content: z.string().min(1, 'Message content is required').max(5000),
@@ -153,6 +154,32 @@ export async function POST(
             : `${baseUrl}/chat/${chatId}?token=${chat.refereeToken}`; // Use stored token for referee
 
         await sendNewMessageNotification(recipientEmail, recipientName, chatUrl);
+
+        // Send WhatsApp notification
+        try {
+            // Check if recipient has a phone number
+            // We need to fetch the full user/referee object to get the phone number if it wasn't populated or available
+            // In the code above:
+            // - If Recruiter sending: 'chat' is populated with 'refereeId'. referee.phone should be available.
+            // - If Referee sending: 'chat' is populated with 'recruiterId'. recruiter (User) phone might not be selected by default, let's check.
+
+            let recipientPhone: string | undefined;
+
+            if (senderType === SenderType.RECRUITER) {
+                const referee = await Referee.findById(chat.refereeId);
+                recipientPhone = referee?.phone;
+            } else {
+                const recruiter = await User.findById(chat.recruiterId);
+                recipientPhone = recruiter?.phone;
+            }
+
+            if (recipientPhone) {
+                await sendNewMessageNotificationWhatsApp(recipientPhone, recipientName, chatUrl);
+            }
+        } catch (error) {
+            console.error('Failed to send WhatsApp notification:', error);
+            // Don't block the response
+        }
 
         return NextResponse.json(
             {
